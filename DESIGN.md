@@ -192,8 +192,13 @@ Each tile is a poster in its true frame. On a fine pointer, hovering pushes the 
 ### The Intro (signature)
 On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
 
-### Heading Rise
-Every display heading (h1, h2 in Unbounded capitals) enters once: site.js splits it into words and letters, each word is a mask, and the letters rise into it from 110% below over 900ms (cubic-bezier(0.23, 1, 0.32, 1)), 28ms apart, capped at 24 letters. It starts when a fifth of the heading is on screen, so a two-line heading finishes its first line before its second. The mask reaches 0.3em above the caps so the dots of Ё stay whole; screen readers read a hidden plain copy. Reduced motion: a 300ms fade instead. Body text does not animate letter by letter (owner, 2026-10-26: effects on headings only).
+### Text Rise
+All reading text enters once as it comes on screen (owner, 2026-10-26). site.js splits it; each word is a mask and what sits in it rises from 125% below with cubic-bezier(0.23, 1, 0.32, 1).
+- **Display headings** (h1, h2 in Unbounded capitals) rise letter by letter: 900ms, 28ms apart, capped at 24 letters, so a two-line heading finishes its first line before its second.
+- **Everything else** (paragraphs, sub-headings, lists, captions, the contact email, the footer line) rises word by word: 700ms, 12ms apart, capped at 40 words, so a paragraph is never slow to read.
+- **Stays still:** interface text (bar, filter, tile captions, the reel's film name, buttons, footer links), so it is ready to use at once.
+- The mask reaches 0.3em above and 0.2em below the line so Ё and descenders stay whole; screen readers read a hidden plain copy. Reduced motion: a 300ms fade instead.
+- Taste inspect's ragged-edges WARN on Sky Race comes from the split: the meter counts each word of an h3 as its own text block. The layout's edges are unchanged.
 
 ## Do's and Don'ts
 

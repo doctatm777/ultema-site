@@ -210,13 +210,17 @@
     }
   }
 
-  // ---------- Headings: the letters rise out of a mask, one after another, as the heading arrives ----------
-  // Screen readers get the plain text from a visually hidden copy; the split letters are aria-hidden.
+  // ---------- Text rises out of a mask as it arrives: headings letter by letter, other text word by word ----------
+  // Each word is a mask; what sits in it rises from below. Screen readers get the plain text from a visually hidden copy.
+  // Interface text (bar, filter, tiles, the reel's film name, buttons) stays still so it is always ready to use.
   const heads = $$('.display:is(h1, h2)');
-  if (heads.length && 'IntersectionObserver' in window) {
-    const split = (node, n) => {
+  const prose = $$('main :is(p, h3, figcaption, li, h2:not(.display)), .contact__mail, .foot__line')
+    .filter((el) => !el.closest('.tile, .filter, .hero__now, nav, button, .bar'));
+  const texts = prose.filter((el) => !prose.some((o) => o !== el && o.contains(el)));
+  if ((heads.length || texts.length) && 'IntersectionObserver' in window) {
+    const split = (node, n, letters) => {
       for (const child of [...node.childNodes]) {
-        if (child.nodeType === 1) { n = split(child, child.hasAttribute('lang') ? 0 : n); continue; }
+        if (child.nodeType === 1) { n = split(child, child.hasAttribute('lang') ? 0 : n, letters); continue; }
         if (child.nodeType !== 3 || !child.textContent.trim()) continue;
         const frag = document.createDocumentFragment();
         const plain = document.createElement('span'); plain.className = 'vh'; plain.textContent = child.textContent;
@@ -225,7 +229,9 @@
           if (!word) return;
           if (/^\s+$/.test(word)) { shown.append(word); return; }
           const w = document.createElement('span'); w.className = 'w';
-          for (const ch of word) { const c = document.createElement('span'); c.className = 'c'; c.style.setProperty('--i', String(n++)); c.textContent = ch; w.append(c); }
+          for (const part of letters ? word : [word]) {
+            const c = document.createElement('span'); c.className = 'c'; c.style.setProperty('--i', String(n++)); c.textContent = part; w.append(c);
+          }
           shown.append(w);
         });
         frag.append(plain, shown);
@@ -235,8 +241,10 @@
     };
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-    }, { threshold: 0.2 });
-    heads.forEach((h) => { split(h, 0); h.removeAttribute('data-reveal'); h.classList.add('split'); io.observe(h); });
+    }, { rootMargin: '0px 0px -8% 0px' });
+    const prep = (el, letters) => { split(el, 0, letters); el.removeAttribute('data-reveal'); el.classList.add('split', letters ? 'split--letters' : 'split--words'); io.observe(el); };
+    heads.forEach((h) => prep(h, true));
+    texts.forEach((p) => prep(p, false));
   }
 
   // ---------- Reveal on entry: stagger the parts of a group (the animation itself is CSS) ----------

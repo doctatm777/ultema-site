@@ -217,7 +217,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .portrait img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; } /* owner asked for a round portrait */
 .portrait figcaption { padding-top: 20px; }
 .portrait figcaption b { display: block; font-size: var(--step-body); font-weight: 500; }
-.portrait figcaption span { font-size: var(--step-small); color: var(--muted); }
+.portrait figcaption > span { font-size: var(--step-small); color: var(--muted); }
 
 .about__lead { margin-top: clamp(32px, 4vw, 56px); max-width: 38ch; font-size: var(--step-lead); line-height: 1.35; text-wrap: pretty; }
 
@@ -237,7 +237,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 /* Four contacts on the 12-column grid: a muted service name over the handle. */
 .contact__list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
 .contact__list li { display: grid; gap: 8px; min-width: 0; }
-.contact__list span { font-size: var(--step-small); color: var(--muted); }
+.contact__list li > span { font-size: var(--step-small); color: var(--muted); }
 .contact__list a { overflow-wrap: anywhere; }
 .contact__note { margin-top: clamp(32px, 4vw, 48px); font-size: var(--step-small); color: var(--muted); }
 
@@ -350,13 +350,16 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   }
 }
 
-/* Headings: each word is a mask and its letters rise into it one after another (site.js splits them).
-   The mask runs past the cap height so the dots of Ё stay visible; ease-out, entrance only. */
-.split .w { display: inline-block; clip-path: inset(-0.3em -0.1em 0 -0.1em); }
-.split .c {
-  display: inline-block; transform: translateY(110%);
-  transition: transform 900ms var(--ease-out) calc(min(var(--i), 24) * 28ms);
-}
+/* Text rises into place (site.js splits it): each word is a mask, and what sits in it rises from below.
+   Headings go letter by letter, other text word by word so a paragraph is never slow to read. The mask reaches
+   above the caps and below the baseline so Ё and descenders stay whole; ease-out, entrance only. */
+/* The screen-reader copy is pinned to the block's own corner, not to wherever its sentence starts. */
+.split { position: relative; }
+.split .vh { left: 0; top: 0; }
+.split .w { display: inline-block; clip-path: inset(-0.3em -0.1em -0.2em -0.1em); }
+.split .c { display: inline-block; transform: translateY(125%); }
+.split--letters .c { transition: transform 900ms var(--ease-out) calc(min(var(--i), 24) * 28ms); }
+.split--words .c { transition: transform 700ms var(--ease-out) calc(min(var(--i), 40) * 12ms); }
 .split.is-in .c { transform: none; }
 
 /* Load moment: the hero copy settles in once. */
