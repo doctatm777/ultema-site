@@ -19,7 +19,7 @@ PRODUCT.md                 продукт и решения владельца (
 
 ## Изменить контакты или тексты
 
-1. Почта, Telegram, Instagram, Behance — объект `CONFIG` в начале `tools/build.mjs`. Почта `hello@ultema.pro` пока заглушка; пустой Telegram не показывается.
+1. Почта, Telegram, Instagram, Behance — объект `CONFIG` в начале `tools/build.mjs`. Список контактов в блоке «Контакты» собирается из `contacts` рядом с `CONFIG`.
 2. Описания роликов, клиенты, годы — `tools/works.mjs` (порядок на стене — `wallOrder` в `tools/build.mjs`).
 3. Пересобрать страницы:
 

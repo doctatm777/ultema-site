@@ -46,11 +46,11 @@ Visitors mostly come from phones (Instagram bio link) and desktops (Behance, age
 - Name: ULTEMA, positioned as a personal premium brand. Logo: italic geometric wordmark, supplied 2026-10-25 as a **white** PNG on transparent (`F:/UNREAL_ENGINE/PORTFOLIO/ultema-logo.png`, 7483×750); the same outline exists as `assets/img/ultema-logo.svg` (an earlier red #FA0102 file, recolourable).
 - Portrait: `F:/UNREAL_ENGINE/PORTFOLIO/my_photo.jpg`, 4096² black-and-white studio portrait on black.
 - **Standing preference (owner, 2026-10-25):** the site takes the category standard of automotive CGI studios, played straight at full craft, not an invented world. Craft bar: Fuze Studio (fuzestudio.ltd), Unit Image (unit-image.fr), The Mill (themill.com), Platige Image (platige.com). Owner approved Taste's dealt palette: warm near-black ground, white ink, gold only on the single action. Faces: **Unbounded** (display) + **Onest** (text), chosen by the owner from Taste's library because the first dealt pair (Gambarino / General Sans) has no Cyrillic.
-- Instagram @ruby_gs300, Behance artemryakin. Email `hello@ultema.pro` is a placeholder until confirmed.
+- Contacts (owner, 2026-10-26): Behance artemryakin, Instagram @ruby_gs300, Telegram @ruby_gs300, email artem@riakin.ru.
 
 ## Evidence on Hand
 
-Fifteen finished projects in `F:/UNREAL_ENGINE/PORTFOLIO` (Sky Race = ESM2026/VIDEO_2 with full breakdown materials; ESM 2026 teaser; ESM 2025 ×4; Lexus Wangan Beat; Mercedes W124 Autumn; Skoda Superb Carbon; Stance Kodiaq; Toyota Aristo JZS161 ×3; Weds Bazreia; Electrobus; Airstatic Service; MetaHuman; MIA & Pine Creek). `F:/UNREAL_ENGINE/PORTFOLIO/REF` holds two showreels by other artists (Motion Illusion, Motion by Rohit) as editing references only — never page content. No testimonials, press, client logos or metrics exist — none may be invented.
+Fourteen projects on the site in `F:/UNREAL_ENGINE/PORTFOLIO` (Sky Race = ESM2026/VIDEO_2 with full breakdown materials; ESM 2026 teaser; ESM 2025 ×4; Lexus Wangan Beat; Mercedes W124 Autumn; Skoda Superb Carbon; Stance Kodiaq; Toyota Aristo JZS161 ×3; Weds Bazreia; Electrobus; Airstatic Service; MetaHuman). MIA & Pine Creek was removed from the site at the owner's request (2026-10-26). `F:/UNREAL_ENGINE/PORTFOLIO/REF` holds two showreels by other artists (Motion Illusion, Motion by Rohit) as editing references only — never page content. No testimonials, press, client logos or metrics exist — none may be invented.
 
 ## Product Principles
 

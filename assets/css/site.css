@@ -233,8 +233,12 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   transition: color 240ms ease;
 }
 @media (hover: hover) and (pointer: fine) { .contact__mail:hover { color: var(--accent); } }
-.contact__foot { display: flex; justify-content: space-between; gap: 24px; font-size: var(--step-small); }
-.contact__foot nav { display: flex; gap: 24px; color: var(--ink); }
+/* Four contacts on the 12-column grid: a muted service name over the handle. */
+.contact__list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
+.contact__list li { display: grid; gap: 8px; min-width: 0; }
+.contact__list span { font-size: var(--step-small); color: var(--muted); }
+.contact__list a { overflow-wrap: anywhere; }
+.contact__note { margin-top: clamp(48px, 5vw, 72px); font-size: var(--step-small); color: var(--muted); }
 
 /* ---------- Footer: a quiet close with a small logo ---------- */
 .foot { padding: clamp(56px, 6vw, 88px) var(--m) 28px; }
@@ -369,7 +373,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   .hero__now { text-align: left; }
   .intro-on .intro { --iw: 92vw; }
   .contact__mail { white-space: normal; }
-  .contact__foot { flex-direction: column; }
+  .contact__list { grid-template-columns: repeat(2, 1fr); }
   .foot__brand { grid-column: 1 / -1; }
   .foot__nav { grid-column: 1 / span 6; }
   .foot__social { grid-column: 7 / span 6; }

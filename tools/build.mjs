@@ -15,17 +15,23 @@ import { works as allWorks, ratio } from './works.mjs';
 
 // Wall order: widescreen and vertical films interleaved so every row of the wall mixes frames.
 const wallOrder = ['sky-race', 'esm-2026', 'mercedes-w124-autumn', 'weds-bazreia', 'aristo-rakku', 'lexus-wangan-beat', 'aristo-burnout',
-  'esm-2025', 'skoda-superb-carbon', 'stance-kodiaq', 'airstatic-service', 'metahuman', 'aristo-osushi', 'electrobus', 'mia-pine-creek'];
+  'esm-2025', 'skoda-superb-carbon', 'stance-kodiaq', 'airstatic-service', 'metahuman', 'aristo-osushi', 'electrobus'];
 const works = wallOrder.map((slug) => allWorks.find((w) => w.slug === slug));
 import { skyRace } from './sky-race.mjs';
 
 const CONFIG = {
   site: 'https://ultema.pro',
-  email: 'hello@ultema.pro', // placeholder until Artem confirms the address
-  telegram: '',              // e.g. https://t.me/<handle>; hidden while empty
+  email: 'artem@riakin.ru',
+  telegram: 'https://t.me/ruby_gs300',
   instagram: 'https://www.instagram.com/ruby_gs300/',
   behance: 'https://www.behance.net/artemryakin',
 };
+// Contact list in the owner's order: service, handle shown, link.
+const contacts = [
+  ['Behance', 'artemryakin', CONFIG.behance],
+  ['Instagram', '@ruby_gs300', CONFIG.instagram],
+  ['Telegram', '@ruby_gs300', CONFIG.telegram],
+];
 
 const logoPath = readFileSync('assets/img/ultema-logo.svg', 'utf8').match(/ d="([^"]+)"/)[1];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -81,11 +87,7 @@ function bar({ rel, home, solid = false, links }) {
 </header>`;
 }
 
-const socials = () => [
-  CONFIG.telegram && `<a class="link" href="${CONFIG.telegram}" rel="me noopener">Telegram</a>`,
-  `<a class="link" href="${CONFIG.instagram}" rel="me noopener">Instagram</a>`,
-  `<a class="link" href="${CONFIG.behance}" rel="me noopener">Behance</a>`,
-].filter(Boolean);
+const socials = () => contacts.map(([name, , href]) => `<a class="link" href="${href}" rel="me noopener">${name}</a>`);
 
 function footer(rel, withMark = true) {
   const home = rel ? `${rel}` : '';
@@ -194,7 +196,11 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
   <section class="contact" id="contact" aria-labelledby="contact-title">
     <h2 class="contact__ask" id="contact-title" data-reveal>${t({ en: 'For films and collaborations, write to me.', ru: 'По роликам и сотрудничеству пишите мне.' })}</h2>
     <a class="contact__mail" href="${mailto}" data-reveal>${CONFIG.email.replace('@', '@<wbr>')}</a>
-    <div class="contact__foot"><p>${t({ en: 'English or Russian, either is fine.', ru: 'Можно на русском или на английском.' })}</p><nav ${tAttr('aria-label', { en: 'Social', ru: 'Соцсети' })}>${socials().join('')}</nav></div>
+    <ul class="contact__list" ${tAttr('aria-label', { en: 'Contacts', ru: 'Контакты' })}>
+      ${contacts.map(([name, handle, href]) => `<li><span>${name}</span><a class="link" href="${href}" rel="me noopener">${handle}</a></li>`).join('\n      ')}
+      <li><span>Email</span><a class="link" href="${mailto}">${CONFIG.email}</a></li>
+    </ul>
+    <p class="contact__note">${t({ en: 'English or Russian, either is fine.', ru: 'Можно на русском или на английском.' })}</p>
   </section>
 </main>
 ${footer('')}

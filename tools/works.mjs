@@ -149,16 +149,6 @@ export const works = [
     },
     films: [{ src: 'metahuman', dur: '0:28' }],
   },
-  {
-    slug: 'mia-pine-creek', kind: { en: 'A stylised character spot for the Pine Creek golf club', ru: 'Стилизованный ролик с персонажем для гольф-клуба Pine Creek' },
-    title: 'MIA & Pine Creek', frame: '9:16', group: 'social',
-    role: { en: 'Character animation', ru: 'Анимация персонажа' },
-    desc: {
-      en: 'A stylised character spot for the Pine Creek golf club: a girl, a swing and the course behind her.',
-      ru: 'Стилизованный ролик с персонажем для гольф-клуба Pine Creek: девочка, замах и поле за спиной.',
-    },
-    films: [{ src: 'mia-pine-creek', dur: '0:12' }],
-  },
 ];
 
 // Pixel aspect of each frame, used to size the wall's tiles before their posters load.

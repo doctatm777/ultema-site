@@ -177,6 +177,7 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 - **Internal Padding:** none; the caption sits 10px under the media.
 
 ### Footer
+- **Contact:** the email as display type, then the four contacts on the grid (Behance, Instagram, Telegram, Email), each a muted service name over its handle; two columns on phones.
 - **Style:** a quiet close on Warm Black: the logo at 120–168px with one line about Artem in Ash, the section links, the email and socials, and a legal row with Back to top. No full-width wordmark (owner, 2026-10-26).
 
 ### Navigation
