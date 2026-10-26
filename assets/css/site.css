@@ -166,7 +166,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .wall { display: flex; flex-wrap: wrap; gap: var(--gap); margin-top: 32px; }
 .tile {
   --row-h: 260px; flex: var(--ar) 1 calc(var(--ar) * var(--row-h)); min-width: 0;
-  display: block; text-decoration: none; color: var(--ink);
+  position: relative; display: block; text-decoration: none; color: var(--ink);
   transition: opacity 240ms ease;
 }
 .wall.is-laid .tile { flex: none; }
@@ -176,10 +176,15 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .tile__media img, .tile__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
 .tile__media video { opacity: 0; transition: opacity 220ms ease; }
 .tile.is-playing .tile__media video { opacity: 1; }
-/* Name over frame, both inside the tile's own width, so a label never runs into the next tile across the gutter. */
-.tile__cap { display: grid; padding-top: 10px; font-size: var(--step-small); line-height: 1.35; white-space: nowrap; }
+/* The name and frame sit on the preview itself (owner, 2026-10-26), over a neutral scrim so they read on any frame. */
+.tile__cap {
+  position: absolute; inset: auto 0 0; z-index: 1; display: grid; padding: 36px 12px 10px;
+  font-size: var(--step-small); line-height: 1.35; white-space: nowrap; pointer-events: none;
+  background: linear-gradient(to top, var(--scrim), transparent); /* taste-skill-ignore: neutral scrim under the tile name */
+}
 .tile__cap span { min-width: 0; overflow: hidden; text-overflow: ellipsis; }
-.tile__cap span:last-child { color: var(--muted); }
+.tile__cap span:first-child { font-weight: 500; }
+.tile__cap span:last-child { color: rgba(255, 255, 255, 0.72); }
 @media (hover: hover) and (pointer: fine) {
   /* Dim the media, not the tile: the tile's entrance animation holds its own opacity. */
   .wall:has(.tile:hover) .tile:not(:hover) .tile__media { opacity: 0.55; }
