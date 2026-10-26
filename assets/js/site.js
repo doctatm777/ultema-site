@@ -210,6 +210,35 @@
     }
   }
 
+  // ---------- Headings: the letters rise out of a mask, one after another, as the heading arrives ----------
+  // Screen readers get the plain text from a visually hidden copy; the split letters are aria-hidden.
+  const heads = $$('.display:is(h1, h2)');
+  if (heads.length && 'IntersectionObserver' in window) {
+    const split = (node, n) => {
+      for (const child of [...node.childNodes]) {
+        if (child.nodeType === 1) { n = split(child, child.hasAttribute('lang') ? 0 : n); continue; }
+        if (child.nodeType !== 3 || !child.textContent.trim()) continue;
+        const frag = document.createDocumentFragment();
+        const plain = document.createElement('span'); plain.className = 'vh'; plain.textContent = child.textContent;
+        const shown = document.createElement('span'); shown.setAttribute('aria-hidden', 'true');
+        child.textContent.split(/(\s+)/).forEach((word) => {
+          if (!word) return;
+          if (/^\s+$/.test(word)) { shown.append(word); return; }
+          const w = document.createElement('span'); w.className = 'w';
+          for (const ch of word) { const c = document.createElement('span'); c.className = 'c'; c.style.setProperty('--i', String(n++)); c.textContent = ch; w.append(c); }
+          shown.append(w);
+        });
+        frag.append(plain, shown);
+        child.replaceWith(frag);
+      }
+      return n;
+    };
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+    }, { threshold: 0.2 });
+    heads.forEach((h) => { split(h, 0); h.removeAttribute('data-reveal'); h.classList.add('split'); io.observe(h); });
+  }
+
   // ---------- Reveal on entry: stagger the parts of a group (the animation itself is CSS) ----------
   const groups = new Map();
   $$('[data-reveal]').forEach((el) => {

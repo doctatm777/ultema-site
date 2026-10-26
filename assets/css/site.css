@@ -126,8 +126,8 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 }
 /* After The Mill: a small two-line statement in the corner, the second line a quieter tone. */
 .hero__title { font-size: var(--step-lead); font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
-.hero__title span { display: block; }
-.hero__title span + span { color: rgba(255, 255, 255, 0.72); }
+.hero__title [lang] > span { display: block; }
+.hero__title [lang] > span + span { color: rgba(255, 255, 255, 0.72); }
 .hero__lede { margin-top: 12px; max-width: 34ch; font-size: var(--step-body); font-weight: 400; line-height: 1.45; text-wrap: pretty; }
 .hero__lede b { font-weight: 500; }
 .hero__actions { display: flex; align-items: center; gap: 16px; }
@@ -212,7 +212,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .about__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; align-items: start; }
 .about__text { grid-column: 1 / span 7; }
 .about__title { font-size: var(--step-display); }
-.about__title span { display: block; }
+.about__title [lang] > span { display: block; }
 .portrait { grid-column: 9 / span 4; align-self: center; justify-self: center; width: min(100%, 380px); text-align: center; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; } /* owner asked for a round portrait */
 .portrait figcaption { padding-top: 20px; }
@@ -350,6 +350,15 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   }
 }
 
+/* Headings: each word is a mask and its letters rise into it one after another (site.js splits them).
+   The mask runs past the cap height so the dots of Ё stay visible; ease-out, entrance only. */
+.split .w { display: inline-block; clip-path: inset(-0.3em -0.1em 0 -0.1em); }
+.split .c {
+  display: inline-block; transform: translateY(110%);
+  transition: transform 900ms var(--ease-out) calc(min(var(--i), 24) * 28ms);
+}
+.split.is-in .c { transform: none; }
+
 /* Load moment: the hero copy settles in once. */
 .js .hero__copy > * { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-out) 200ms, transform 600ms var(--ease-out) 200ms; }
 .js .is-loaded .hero__copy > * { opacity: 1; transform: none; }
@@ -358,6 +367,9 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 @media (prefers-reduced-motion: reduce) {
   .tile__media img, .tile__media video, .tile.is-playing .tile__media video { transform: none !important; clip-path: none !important; transition: none !important; }
   [data-reveal] { animation-name: fade !important; }
+  .split .c { transform: none; transition: none; }
+  .split { opacity: 0; transition: opacity 300ms ease; }
+  .split.is-in { opacity: 1; }
   .js .hero__copy > * { transform: none; transition: opacity 300ms ease; }
 }
 
