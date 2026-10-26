@@ -124,9 +124,11 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   position: absolute; z-index: 46; left: var(--m); right: var(--m); bottom: clamp(28px, 4vw, 48px);
   display: flex; align-items: flex-end; justify-content: space-between; gap: 24px;
 }
-.hero__title { font-size: var(--step-head); }
+/* After The Mill: a small two-line statement in the corner, the second line a quieter tone. */
+.hero__title { font-size: var(--step-lead); font-weight: 500; letter-spacing: -0.01em; line-height: 1.25; }
 .hero__title span { display: block; }
-.hero__lede { margin-top: 16px; max-width: 34ch; font-size: max(18px, var(--step-body)); font-weight: 400; line-height: 1.45; text-wrap: pretty; }
+.hero__title span + span { color: rgba(255, 255, 255, 0.72); }
+.hero__lede { margin-top: 12px; max-width: 34ch; font-size: var(--step-body); font-weight: 400; line-height: 1.45; text-wrap: pretty; }
 .hero__lede b { font-weight: 500; }
 .hero__actions { display: flex; align-items: center; gap: 16px; }
 /* The film on screen right now, named and linked to its page. */
@@ -218,17 +220,16 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .portrait figcaption span { font-size: var(--step-small); color: var(--muted); }
 
 .about__lead { margin-top: clamp(32px, 4vw, 56px); max-width: 38ch; font-size: var(--step-lead); line-height: 1.35; text-wrap: pretty; }
-.about__more { margin-top: 24px; max-width: 46ch; color: var(--ink); text-wrap: pretty; }
 
-/* ---------- Contact: the email as display type ---------- */
+/* ---------- Contact: the email at the headline step, on the page's own ground ---------- */
 .contact {
-  position: relative; background: var(--surface); padding: clamp(96px, 10vw, 160px) var(--m) 32px;
+  position: relative; padding: clamp(72px, 7vw, 112px) var(--m) 0;
   display: grid; grid-template-rows: auto auto auto; scroll-margin-top: 0;
 }
 .contact__ask { max-width: 34ch; font-size: var(--step-lead); font-weight: 400; line-height: 1.3; text-wrap: balance; }
 .contact__mail {
-  display: block; width: 100%; margin: clamp(56px, 8vw, 120px) 0 clamp(56px, 7vw, 104px);
-  font-family: Unbounded, Onest, sans-serif; font-weight: 300; font-size: var(--step-display);
+  display: block; width: fit-content; margin: clamp(32px, 4vw, 56px) 0 clamp(40px, 5vw, 72px);
+  font-family: Unbounded, Onest, sans-serif; font-weight: 300; font-size: var(--step-head);
   letter-spacing: -0.04em; line-height: 1; text-decoration: none; white-space: nowrap;
   transition: color 240ms ease;
 }
@@ -238,7 +239,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .contact__list li { display: grid; gap: 8px; min-width: 0; }
 .contact__list span { font-size: var(--step-small); color: var(--muted); }
 .contact__list a { overflow-wrap: anywhere; }
-.contact__note { margin-top: clamp(48px, 5vw, 72px); font-size: var(--step-small); color: var(--muted); }
+.contact__note { margin-top: clamp(32px, 4vw, 48px); font-size: var(--step-small); color: var(--muted); }
 
 /* ---------- Footer: a quiet close with a small logo ---------- */
 .foot { padding: clamp(56px, 6vw, 88px) var(--m) 28px; }

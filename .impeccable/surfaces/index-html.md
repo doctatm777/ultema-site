@@ -21,7 +21,7 @@ OWN-WORLD: warm near-black #0c0a08 ground, #181512 for the second ground as a to
 
 STORY: the reel says cinematic car CGI by one person within seconds → the wall shows fourteen films in their real frames, hover plays each, filter by frame → a film opens its own page with its materials (Sky Race: storyboard to stills) → the name and who he is (CG generalist; Unreal Engine, Blender, Cinema 4D, EmberGen) beside a round portrait (owner) → the email as display type.
 
-FIRST VIEWPORT: owner-pinned after The Mill (2026-10-26): first load opens on black with the ULTEMA letters cut out at 62vw and the reel playing through them; after 1.5s the letters open to the full screen and the logo appears top-left in the slim bar. The h1, its line, the film name and the nav stay on screen over the black intro, as at The Mill (owner confirmed 2026-10-26). Full-bleed muted showreel at 100svh (16:9 desktop, 9:16 portrait phones), neutral scrims under the bar and under the copy. Bottom-left: h1 'Artem Ryakin / CG Generalist' at the headline step with the line 'Every stage of a 3D film in one pair of hands' (owner's wording, 2026-10-26); bottom-right: the name of the film on screen (linked to its page) and the pause control. Bar: logo left; Work, About, Contact, EN/RU right; on phones Work and About fold away.
+FIRST VIEWPORT: owner-pinned after The Mill (2026-10-26): first load opens on black with the ULTEMA letters cut out at 62vw and the reel playing through them; after 1.5s the letters open to the full screen and the logo appears top-left in the slim bar. The h1, its line, the film name and the nav stay on screen over the black intro, as at The Mill (owner confirmed 2026-10-26). Full-bleed muted showreel at 100svh (16:9 desktop, 9:16 portrait phones), neutral scrims under the bar and under the copy. Bottom-left: h1 'Artem Ryakin / CG Generalist' small at the lead step (after The Mill) with the line 'Every stage of a 3D film in one pair of hands' (owner's wording, 2026-10-26); bottom-right: the name of the film on screen (linked to its page) and the pause control. Bar: logo left; Work, About, Contact, EN/RU right; on phones Work and About fold away.
 
 FORM: canon (the category standard, taken by the owner as the standing exit). Signature interaction: the reel seen through the ULTEMA letters, which open to the full screen; the reel names each film as it cuts; the wall plays each film in its true frame under the pointer, with a frame filter (All, Cinema, Social): Social rather than Vertical because the 1:1 Weds product film belongs with the 9:16 social cuts. seed:92670d142c4e6fe5
 
@@ -30,6 +30,7 @@ FINISH: unreviewed and undocumented is unfinished; this build ends with the fini
 ## Unresolved
 
 - Project descriptions, years and clients beyond Sky Race / ESM are drafted from the footage and need Artem's confirmation.
+- Owner deviation (2026-10-26): the hero h1 sits small in the corner at the lead step after The Mill; Taste inspect's small-title WARN is accepted for it.
 - Contacts confirmed by the owner (2026-10-26): artem@riakin.ru, Telegram and Instagram @ruby_gs300, Behance artemryakin.
 - The showreel is a cut assembled from project footage until Artem supplies his own (REF folder holds editing references from other artists).
 - Sky Race mood board shows third-party reference photographs; left off the site unless Artem holds rights.

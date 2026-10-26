@@ -103,7 +103,7 @@ A dark, warm, almost colourless system that leaves all colour to the footage.
 
 ### Neutral
 - **Warm Black** (#0c0a08): the page ground everywhere, from the hero edges to the footer.
-- **Ember Black** (#181512): the one tone step: the contact field, filter chips, tile placeholders while a poster loads.
+- **Ember Black** (#181512): the one tone step: filter chips, tile placeholders while a poster loads.
 - **White** (#ffffff): all running text, headings, the wordmark.
 - **Ash** (#8f8a84): secondary notes only: frame labels in captions, muted meta values, inactive filters.
 - **Film Black** (#000000): the ground behind a film and around its frame, before it loads and in letterboxes.
@@ -125,7 +125,7 @@ A dark, warm, almost colourless system that leaves all colour to the footage.
 
 ### Hierarchy
 - **Display** (800, clamp(3.25rem, 9vw, 8.5rem), 1): section titles on the main page (WORK, the name in About). Capitals, tracking -0.03em. 14vw on phones.
-- **Headline** (800, clamp(2rem, 1.2rem + 3.6vw, 5rem), 1): the hero statement (Artem Ryakin / CG Generalist, owner's wording), project titles and chapter titles. Capitals.
+- **Headline** (800, clamp(2rem, 1.2rem + 3.6vw, 5rem), 1): project titles and chapter titles. Capitals.
 - **Address** (300, display size, 1): the contact email set as display type, lowercase, tracking -0.04em, breaking after the @ on phones.
 - **Lead** (400, clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem), 1.35): the about paragraph, project descriptions, the line under a project title.
 - **Body** (400, clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem), 1.5): the hero line, lists, running text. Measure 30–40ch in short blocks.
@@ -177,7 +177,8 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 - **Internal Padding:** none; the caption sits 10px under the media.
 
 ### Footer
-- **Contact:** the email as display type, then the four contacts on the grid (Behance, Instagram, Telegram, Email), each a muted service name over its handle; two columns on phones.
+- **Hero statement:** after The Mill (owner, 2026-10-26): 'Artem Ryakin / CG Generalist' small in the bottom-left corner, Unbounded 500 capitals at the lead step, the second line at 72% white, with one body line under it.
+- **Contact:** on the page's own Warm Black, the email in Unbounded 300 at the headline step, then the four contacts on the grid (Behance, Instagram, Telegram, Email), each a muted service name over its handle; two columns on phones.
 - **Style:** a quiet close on Warm Black: the logo at 120–168px with one line about Artem in Ash, the section links, the email and socials, and a legal row with Back to top. No full-width wordmark (owner, 2026-10-26).
 
 ### Navigation
@@ -207,4 +208,5 @@ On a visitor's first load per session, the screen is Warm Black with the ULTEMA 
 - **Don't** put small labels above headings, number sections 01/02/03, or set monospace.
 - **Don't** round corners; the About portrait's circle is the single exception.
 - **Don't** add a third typeface or a second accent colour.
+- **Don't** end a text block with a full stop (owner, 2026-10-26); full stops stay only between sentences.
 - **Don't** add sales calls to action ("Start a project" and the like); contact lives in the Contact section.

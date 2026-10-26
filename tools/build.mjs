@@ -95,7 +95,7 @@ function footer(rel, withMark = true) {
   <div class="foot__grid">
     <div class="foot__brand">
       <a class="foot__mark" href="${home || '#top'}" ${tAttr('aria-label', { en: 'ULTEMA, home', ru: 'ULTEMA, на главную' })}>${logo()}</a>
-      <p class="foot__line">${t({ en: 'Cinematic CGI car films by Artem Ryakin, CG generalist.', ru: 'Кинематографичные CGI-ролики об автомобилях. Артём Рякин, CG-дженералист.' })}</p>
+      <p class="foot__line">${t({ en: 'Cinematic CGI car films by Artem Ryakin, CG generalist', ru: 'Кинематографичные CGI-ролики об автомобилях. Артём Рякин, CG-дженералист' })}</p>
     </div>
     <ul class="foot__nav" ${tAttr('aria-label', { en: 'Site', ru: 'Разделы' })}>
       <li><a class="link" href="${home}#work">${t({ en: 'Work', ru: 'Работы' })}</a></li>
@@ -152,7 +152,7 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
     <div class="hero__copy">
       <div class="hero__text">
         <h1 class="hero__title display">${t({ en: '<span>Artem Ryakin</span><span>CG Generalist</span>', ru: '<span>Артём Рякин</span><span>CG Generalist</span>' })}</h1>
-        <p class="hero__lede">${t({ en: 'Every stage of a 3D film in one pair of hands.', ru: 'Все этапы создания 3D ролика в одних руках.' })}</p>
+        <p class="hero__lede">${t({ en: 'Every stage of a 3D film in one pair of hands', ru: 'Все этапы создания 3D ролика в одних руках' })}</p>
       </div>
       <div class="hero__actions">
         <a class="hero__now" href="work/${shotsH[0][0]}/" target="_blank" rel="noopener" data-now><span class="hero__now-k">${t({ en: 'In the reel', ru: 'В кадре' })}</span><b data-now-title>${titleOf(shotsH[0][0])}</b>${newTab}</a>
@@ -180,11 +180,8 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
     <div class="about__text" data-reveal-group>
       <h2 class="about__title display" id="about-title" data-reveal>${t({ en: '<span>Artem</span><span>Ryakin</span>', ru: '<span>Артём</span><span>Рякин</span>' })}</h2>
       <p class="about__lead" data-reveal>${t({
-        en: 'I’m a CG generalist working in Unreal Engine, Blender, Cinema 4D and EmberGen. A car film like these is usually made by a studio with a team for every stage; I run all of them myself, from the first sketch to the last frame.',
-        ru: 'Я CG-дженералист, работаю в Unreal Engine, Blender, Cinema 4D и EmberGen. Такие ролики обычно делает студия, где на каждый этап своя команда; я веду все этапы сам, от первого скетча до последнего кадра.' })}</p>
-      <p class="about__more" data-reveal>${t({
-        en: 'Most of my work is cinematic automotive CGI: real cars and real custom builds, with wheels and aero kits modelled from real parts.',
-        ru: 'В основном это кинематографичный автомобильный CGI: реальные машины и кастомные проекты, диски и обвесы смоделированы по настоящим деталям.' })}</p>
+        en: 'Full-cycle CG generalist. I make films end to end, from the idea and storyboard to the final render and comp. I turn meaning into strong visuals. Graphics director and CG generalist in one person',
+        ru: 'CG Generalist полного цикла. Создаю видеоролики под ключ — от идеи и раскадровки до финального рендеринга и композа. Превращаю смыслы в сильный визуал. Режиссер графики и CG-генералист в одном лице' })}</p>
     </div>
     <figure class="portrait" data-reveal>
       <img src="assets/media/about/portrait-round.webp" width="800" height="800" loading="lazy" decoding="async" ${tAttr('alt', { en: 'Artem Ryakin, black-and-white studio portrait', ru: 'Артём Рякин, чёрно-белый студийный портрет' })}>
@@ -194,13 +191,13 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
   </section>
 
   <section class="contact" id="contact" aria-labelledby="contact-title">
-    <h2 class="contact__ask" id="contact-title" data-reveal>${t({ en: 'For films and collaborations, write to me.', ru: 'По роликам и сотрудничеству пишите мне.' })}</h2>
+    <h2 class="contact__ask" id="contact-title" data-reveal>${t({ en: 'For films and collaborations, write to me', ru: 'По роликам и сотрудничеству пишите мне' })}</h2>
     <a class="contact__mail" href="${mailto}" data-reveal>${CONFIG.email.replace('@', '@<wbr>')}</a>
     <ul class="contact__list" ${tAttr('aria-label', { en: 'Contacts', ru: 'Контакты' })}>
       ${contacts.map(([name, handle, href]) => `<li><span>${name}</span><a class="link" href="${href}" rel="me noopener">${handle}</a></li>`).join('\n      ')}
       <li><span>Email</span><a class="link" href="${mailto}">${CONFIG.email}</a></li>
     </ul>
-    <p class="contact__note">${t({ en: 'English or Russian, either is fine.', ru: 'Можно на русском или на английском.' })}</p>
+    <p class="contact__note">${t({ en: 'English or Russian, either is fine', ru: 'Можно на русском или на английском' })}</p>
   </section>
 </main>
 ${footer('')}
@@ -280,7 +277,7 @@ function skyRaceChapters() {
   <section class="thanks" aria-labelledby="ch-thanks">
     <div data-reveal>${loop('thanks', 1920, 538, { en: 'The three cars from behind, end frame', ru: 'Три машины сзади, финальный кадр' })}</div>
     <h2 class="chapter__title display" id="ch-thanks" style="margin-top:48px" data-reveal>${t({ en: 'Thanks for watching', ru: 'Спасибо за просмотр' })}</h2>
-    <p data-reveal>${t({ en: 'Every frame of this film, from the storyboard to the final comp, was made by one person. More of the work is on the main page.', ru: 'Каждый кадр этого фильма, от раскадровки до композа, сделал один человек. Остальные работы на главной.' })}</p>
+    <p data-reveal>${t({ en: 'Every frame of this film, from the storyboard to the final comp, was made by one person. More of the work is on the main page', ru: 'Каждый кадр этого фильма, от раскадровки до композа, сделал один человек. Остальные работы на главной' })}</p>
   </section>`;
 }
 
@@ -355,7 +352,7 @@ ${bar({ rel: '/', home: '/', solid: true, links: `<a class="link" href="/#work">
     <video class="lost__video" muted loop playsinline autoplay preload="auto" poster="/assets/media/work/sky-race.webp" src="/assets/media/hover/sky-race.mp4" aria-hidden="true"></video>
     <div class="lost__copy">
       <h1 class="case-top__title display" id="lost-title">${t({ en: 'Page not found', ru: 'Страница не найдена' })}</h1>
-      <p class="case-top__kind">${t({ en: 'This page does not exist or has moved. Every film is on the main page.', ru: 'Такой страницы нет или она переехала. Все ролики на главной.' })}</p>
+      <p class="case-top__kind">${t({ en: 'This page does not exist or has moved. Every film is on the main page', ru: 'Такой страницы нет или она переехала. Все ролики на главной' })}</p>
       <p style="margin-top:28px"><a class="btn" href="/#work">${t({ en: 'See the work', ru: 'Смотреть работы' })}</a></p>
     </div>
   </section>
