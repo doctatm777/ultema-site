@@ -182,7 +182,7 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 - **Mobile:** Work and About fold away; Contact and the language pair stay.
 
 ### The Wall (signature)
-Each tile is a poster in its true frame; on a fine pointer, hovering plays a 5-second muted loop that fades in over 220ms while the other tiles' media dims to 55%. On a phone the tile that is fully on screen plays on its own. Captions sit on the preview itself (owner, 2026-10-26): the film's name and under it the frame at 72% white, bottom-left over a neutral scrim, inside the tile's own width. Every tile opens the film's own page in a new tab.
+Each tile is a poster in its true frame; on a fine pointer, hovering plays a 5-second muted loop that fades in over 220ms while the other tiles' media dims to 55%. On a phone the tile that is fully on screen plays on its own. Captions sit on the preview itself (owner, 2026-10-26): the film's name only, bottom-left over a neutral scrim, inside the tile's own width; the frame shows in the tile's shape, not in words. Every tile opens the film's own page in a new tab.
 
 ### The Intro (signature)
 On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
