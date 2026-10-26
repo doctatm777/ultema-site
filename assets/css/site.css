@@ -174,18 +174,34 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .tile__media { position: relative; aspect-ratio: var(--ar); overflow: hidden; background: var(--surface); transition: opacity 240ms ease; }
 .wall.is-laid .tile__media { aspect-ratio: auto; height: var(--h); }
 .tile__media img, .tile__media video { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
-.tile__media video { opacity: 0; transition: opacity 220ms ease; }
-.tile.is-playing .tile__media video { opacity: 1; }
+/* Hover: the poster pushes in slowly, the loop wipes across it from the left like a cut and settles from a slight
+   zoom. Entering is slow and soft, leaving is quick (Emil: asymmetric timing; transform, clip-path and opacity only). */
+.tile__media img { transition: transform 420ms var(--ease-out); }
+.tile__media video {
+  clip-path: inset(0 100% 0 0); transform: scale(1.08);
+  transition: clip-path 260ms var(--ease-out), transform 420ms var(--ease-out);
+}
+.tile.is-playing .tile__media video {
+  clip-path: inset(0 0 0 0); transform: scale(1);
+  transition: clip-path 640ms var(--ease-out), transform 1100ms var(--ease-out);
+}
 /* The name sits on the preview itself (owner, 2026-10-26), over a neutral scrim so they read on any frame. */
 .tile__cap {
   position: absolute; inset: auto 0 0; z-index: 1; display: grid; padding: 36px 12px 10px;
+  grid-template-rows: auto 0fr; transition: grid-template-rows 360ms var(--ease-out);
   font-size: var(--step-small); line-height: 1.35; white-space: nowrap; pointer-events: none;
   background: linear-gradient(to top, var(--scrim), transparent); /* taste-skill-ignore: neutral scrim under the tile name */
 }
-.tile__cap > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: 500; }
+.tile__cap > span { min-width: 0; overflow: hidden; text-overflow: ellipsis; font-weight: 500; transition: transform 320ms var(--ease-out); }
+.tile__cap > .tile__cta { min-height: 0; opacity: 0; font-weight: 400; color: rgba(255, 255, 255, 0.72); transform: translateY(6px); transition: opacity 200ms ease, transform 320ms var(--ease-out); }
+.tile:active .tile__media { transform: scale(0.985); transition: transform 160ms var(--ease-out), opacity 240ms ease; }
 @media (hover: hover) and (pointer: fine) {
   /* Dim the media, not the tile: the tile's entrance animation holds its own opacity. */
   .wall:has(.tile:hover) .tile:not(:hover) .tile__media { opacity: 0.55; }
+  .tile:hover .tile__media img { transform: scale(1.06); transition: transform 1200ms var(--ease-out); }
+  .tile:hover .tile__cap > span:first-child { transform: translateY(-2px); }
+  .tile:hover .tile__cap { grid-template-rows: auto 1fr; }
+  .tile:hover .tile__cap > .tile__cta { opacity: 1; transform: none; transition: opacity 320ms ease 80ms, transform 420ms var(--ease-out) 80ms; }
 }
 .tile:focus-visible { outline-offset: 4px; }
 
@@ -220,14 +236,18 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .contact__foot { display: flex; justify-content: space-between; gap: 24px; font-size: var(--step-small); }
 .contact__foot nav { display: flex; gap: 24px; color: var(--ink); }
 
-/* ---------- Footer: the name first ---------- */
-.foot { padding: clamp(48px, 6vw, 96px) var(--m) 32px; }
-.foot__mark { color: var(--ink); }
+/* ---------- Footer: a quiet close with a small logo ---------- */
+.foot { padding: clamp(56px, 6vw, 88px) var(--m) 28px; }
+.foot__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 40px; align-items: start; }
+.foot__brand { grid-column: 1 / span 5; }
+.foot__mark { display: block; width: clamp(120px, 11vw, 168px); color: var(--ink); transition: color 200ms ease; }
 .foot__mark svg { width: 100%; height: auto; }
-.foot__row { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; margin-top: 72px; }
-.foot__places { grid-column: 1 / span 6; list-style: none; padding: 0; font-size: var(--step-lead); line-height: 1.4; }
-.foot__links { grid-column: 8 / span 5; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; list-style: none; padding: 0; font-size: var(--step-small); line-height: 1.9; }
-.foot__legal { display: flex; justify-content: space-between; gap: 24px; margin-top: 96px; font-size: var(--step-small); color: var(--muted); }
+.foot__line { margin-top: 18px; max-width: 32ch; color: var(--muted); }
+.foot__nav, .foot__social { list-style: none; padding: 0; display: grid; gap: 10px; }
+.foot__nav { grid-column: 7 / span 2; }
+.foot__social { grid-column: 10 / span 3; }
+.foot__legal { display: flex; justify-content: space-between; gap: 24px; margin-top: clamp(56px, 6vw, 88px); font-size: var(--step-small); color: var(--muted); }
+@media (hover: hover) and (pointer: fine) { .foot__mark:hover { color: var(--accent); } }
 
 /* ---------- Project pages ---------- */
 .case-top { padding: calc(var(--bar-h) + clamp(32px, 6vw, 80px)) var(--m) 0; }
@@ -331,6 +351,7 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .js .is-loaded .hero__copy > .hero__actions { transition-delay: 320ms; }
 
 @media (prefers-reduced-motion: reduce) {
+  .tile__media img, .tile__media video, .tile.is-playing .tile__media video { transform: none !important; clip-path: none !important; transition: none !important; }
   [data-reveal] { animation-name: fade !important; }
   .js .hero__copy > * { transform: none; transition: opacity 300ms ease; }
 }
@@ -349,9 +370,10 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   .intro-on .intro { --iw: 92vw; }
   .contact__mail { white-space: normal; }
   .contact__foot { flex-direction: column; }
-  .foot__places, .foot__links { grid-column: 1 / -1; }
-  .foot__links { margin-top: 40px; }
-  .foot__legal { margin-top: 56px; }
+  .foot__brand { grid-column: 1 / -1; }
+  .foot__nav { grid-column: 1 / span 6; }
+  .foot__social { grid-column: 7 / span 6; }
+  .foot__legal { margin-top: 48px; }
   .case-text p, .case-text__role { grid-column: 1 / -1; }
   .case-text .case-text__role { grid-column: 1 / -1; margin-top: 48px; padding-top: 0; }
   .film--v { grid-template-columns: 1fr; row-gap: 48px; }

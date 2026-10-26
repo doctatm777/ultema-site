@@ -90,16 +90,19 @@ const socials = () => [
 function footer(rel, withMark = true) {
   const home = rel ? `${rel}` : '';
   return `<footer class="foot">
-  ${withMark ? `<div class="foot__mark">${logo(`role="img" aria-label="ULTEMA"`)}</div>` : ''}
-  <div class="foot__row">
-    <ul class="foot__places">
-      <li data-reveal><a class="link" href="${mailto}">${CONFIG.email}</a></li>
-      ${socials().map((a) => `<li data-reveal>${a}</li>`).join('\n      ')}
+  <div class="foot__grid">
+    <div class="foot__brand">
+      <a class="foot__mark" href="${home || '#top'}" ${tAttr('aria-label', { en: 'ULTEMA, home', ru: 'ULTEMA, на главную' })}>${logo()}</a>
+      <p class="foot__line">${t({ en: 'Cinematic CGI car films by Artem Ryakin, CG generalist.', ru: 'Кинематографичные CGI-ролики об автомобилях. Артём Рякин, CG-дженералист.' })}</p>
+    </div>
+    <ul class="foot__nav" ${tAttr('aria-label', { en: 'Site', ru: 'Разделы' })}>
+      <li><a class="link" href="${home}#work">${t({ en: 'Work', ru: 'Работы' })}</a></li>
+      <li><a class="link" href="${home}#about">${t({ en: 'About', ru: 'Обо мне' })}</a></li>
+      <li><a class="link" href="${home}#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a></li>
     </ul>
-    <ul class="foot__links">
-      <li data-reveal><a class="link" href="${home}#work">${t({ en: 'Work', ru: 'Работы' })}</a></li>
-      <li data-reveal><a class="link" href="${home}#about">${t({ en: 'About', ru: 'Обо мне' })}</a></li>
-      <li data-reveal><a class="link" href="${home}#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a></li>
+    <ul class="foot__social">
+      <li><a class="link" href="${mailto}">${CONFIG.email}</a></li>
+      ${socials().map((a) => `<li>${a}</li>`).join('\n      ')}
     </ul>
   </div>
   <div class="foot__legal"><p>© <span data-year>2026</span> ULTEMA · ${t({ en: 'Artem Ryakin', ru: 'Артём Рякин' })}</p><a class="link" href="#top">${t({ en: 'Back to top', ru: 'Наверх' })}</a></div>
@@ -121,7 +124,7 @@ function tile(w) {
   const [pw, ph] = w.frame === '2.39:1' ? [1920, 804] : w.frame === '9:16' ? [720, 1280] : [1080, 1080];
   return `<a class="tile" href="work/${w.slug}/" target="_blank" rel="noopener" data-group="${w.group}" style="--ar:${ar}" data-reveal>
         <div class="tile__media"><img src="assets/media/work/${lead}.webp" width="${pw}" height="${ph}" loading="lazy" decoding="async" ${tAttr('alt', { en: `${w.title}: a frame from the film`, ru: `${w.title}: кадр из ролика` })}><video muted loop playsinline preload="none" poster="assets/media/work/${lead}.webp" data-src="assets/media/hover/${lead}.mp4" aria-hidden="true"></video></div>
-        <p class="tile__cap"><span>${w.title}${newTab}</span></p>
+        <p class="tile__cap"><span>${w.title}${newTab}</span><span class="tile__cta" aria-hidden="true">${t({ en: 'Watch the film', ru: 'Смотреть ролик' })}</span></p>
       </a>`;
 }
 
@@ -323,7 +326,7 @@ ${bar({ rel: R, home: R, solid: true, links: `<a class="link" href="${R}#work">$
   <section class="more" aria-labelledby="more-title">
     <h2 class="more__title display" id="more-title" data-reveal>${t({ en: 'More films', ru: 'Ещё работы' })}</h2>
     <div class="more__row" data-reveal-group>
-      ${[1, 2, 3, 4].map((k) => works[(i + k) % works.length]).map((n) => `<a class="tile" href="${R}work/${n.slug}/" style="--ar:${ratio[n.frame].toFixed(4)}" data-reveal><div class="tile__media"><img src="${R}assets/media/work/${n.films[0].src}.webp" loading="lazy" decoding="async" ${tAttr('alt', { en: `${n.title}: a frame from the film`, ru: `${n.title}: кадр из ролика` })}></div><p class="tile__cap"><span>${n.title}</span></p></a>`).join('\n      ')}
+      ${[1, 2, 3, 4].map((k) => works[(i + k) % works.length]).map((n) => `<a class="tile" href="${R}work/${n.slug}/" style="--ar:${ratio[n.frame].toFixed(4)}" data-reveal><div class="tile__media"><img src="${R}assets/media/work/${n.films[0].src}.webp" loading="lazy" decoding="async" ${tAttr('alt', { en: `${n.title}: a frame from the film`, ru: `${n.title}: кадр из ролика` })}></div><p class="tile__cap"><span>${n.title}</span><span class="tile__cta" aria-hidden="true">${t({ en: 'Watch the film', ru: 'Смотреть ролик' })}</span></p></a>`).join('\n      ')}
     </div>
   </section>
 </main>
@@ -353,7 +356,7 @@ ${bar({ rel: '/', home: '/', solid: true, links: `<a class="link" href="/#work">
   <section class="more" aria-labelledby="more-title">
     <h2 class="more__title display" id="more-title" data-reveal>${t({ en: 'Start with these', ru: 'Начните с этих' })}</h2>
     <div class="more__row" data-reveal-group>
-      ${works.slice(0, 4).map((n) => `<a class="tile" href="/work/${n.slug}/" style="--ar:${ratio[n.frame].toFixed(4)}" data-reveal><div class="tile__media"><img src="/assets/media/work/${n.films[0].src}.webp" loading="lazy" decoding="async" ${tAttr('alt', { en: `${n.title}: a frame from the film`, ru: `${n.title}: кадр из ролика` })}></div><p class="tile__cap"><span>${n.title}</span></p></a>`).join('\n      ')}
+      ${works.slice(0, 4).map((n) => `<a class="tile" href="/work/${n.slug}/" style="--ar:${ratio[n.frame].toFixed(4)}" data-reveal><div class="tile__media"><img src="/assets/media/work/${n.films[0].src}.webp" loading="lazy" decoding="async" ${tAttr('alt', { en: `${n.title}: a frame from the film`, ru: `${n.title}: кадр из ролика` })}></div><p class="tile__cap"><span>${n.title}</span><span class="tile__cta" aria-hidden="true">${t({ en: 'Watch the film', ru: 'Смотреть ролик' })}</span></p></a>`).join('\n      ')}
     </div>
   </section>
 </main>

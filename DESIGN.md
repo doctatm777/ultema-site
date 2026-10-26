@@ -176,13 +176,16 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 - **Border:** none.
 - **Internal Padding:** none; the caption sits 10px under the media.
 
+### Footer
+- **Style:** a quiet close on Warm Black: the logo at 120–168px with one line about Artem in Ash, the section links, the email and socials, and a legal row with Back to top. No full-width wordmark (owner, 2026-10-26).
+
 ### Navigation
 - **Style:** the white wordmark at the left (136px max), Work, About, Contact and the EN/RU pair at the right, all in Label size and weight. Inactive language in Ash.
 - **States:** links turn Brass on hover; the bar goes solid Warm Black once the reel is out of view.
 - **Mobile:** Work and About fold away; Contact and the language pair stay.
 
 ### The Wall (signature)
-Each tile is a poster in its true frame; on a fine pointer, hovering plays a 5-second muted loop that fades in over 220ms while the other tiles' media dims to 55%. On a phone the tile that is fully on screen plays on its own. Captions sit on the preview itself (owner, 2026-10-26): the film's name only, bottom-left over a neutral scrim, inside the tile's own width; the frame shows in the tile's shape, not in words. Every tile opens the film's own page in a new tab.
+Each tile is a poster in its true frame. On a fine pointer, hovering pushes the poster in (scale 1.06 over 1200ms), wipes the 5-second muted loop across it from the left (clip-path, 640ms) while it settles from scale 1.08, raises a quiet "Watch the film" line under the name, and dims the other tiles' media to 55%; leaving undoes it in 260–420ms, and a press sinks the tile to 0.985. All easing is cubic-bezier(0.23, 1, 0.32, 1); reduced motion drops the travel. On a phone the tile that is fully on screen plays on its own. Captions sit on the preview itself (owner, 2026-10-26): the film's name only, bottom-left over a neutral scrim, inside the tile's own width; the frame shows in the tile's shape, not in words. Every tile opens the film's own page in a new tab.
 
 ### The Intro (signature)
 On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
