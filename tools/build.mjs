@@ -36,7 +36,9 @@ const contacts = [
 const logoPath = readFileSync('assets/img/ultema-logo.svg', 'utf8').match(/ d="([^"]+)"/)[1];
 const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 // Both languages ship; CSS shows the active one.
-const t = (o) => `<span lang="en">${o.en}</span><span lang="ru">${o.ru}</span>`;
+// Each sentence on its own line, with no full stops (owner, 2026-10-26).
+const lines = (s) => s.split(/\.\s+(?=[A-ZА-ЯЁ0-9«"“(])/).join('<br>');
+const t = (o) => `<span lang="en">${lines(o.en)}</span><span lang="ru">${lines(o.ru)}</span>`;
 const tAttr = (attr, o) => `${attr}="${esc(o.en)}" data-i18n-attr="${attr}" data-${attr}-en="${esc(o.en)}" data-${attr}-ru="${esc(o.ru)}"`;
 const newTab = t({ en: ' (opens in a new tab)', ru: ' (откроется в новой вкладке)' }).replace(/<span /g, '<span class="vh" ');
 const frameName = { '2.39:1': '2.39:1', '9:16': '9:16', '1:1': '1:1' };

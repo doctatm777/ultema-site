@@ -208,5 +208,5 @@ On a visitor's first load per session, the screen is Warm Black with the ULTEMA 
 - **Don't** put small labels above headings, number sections 01/02/03, or set monospace.
 - **Don't** round corners; the About portrait's circle is the single exception.
 - **Don't** add a third typeface or a second accent colour.
-- **Don't** end a text block with a full stop (owner, 2026-10-26); full stops stay only between sentences.
+- **Don't** use full stops in visible text (owner, 2026-10-26): each sentence starts on its own line; `t()` in tools/build.mjs breaks sentences for you. Meta descriptions keep theirs.
 - **Don't** add sales calls to action ("Start a project" and the like); contact lives in the Contact section.
