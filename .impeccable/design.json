@@ -1,0 +1,301 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-26T21:00:00Z",
+  "title": "Design System: ULTEMA",
+  "extensions": {
+    "colorMeta": {
+      "warm-black": {
+        "role": "neutral",
+        "displayName": "Warm Black",
+        "canonical": "#0c0a08",
+        "tonalRamp": [
+          "#0c0a08",
+          "#181512",
+          "#2a2621",
+          "#3e3833",
+          "#5c5650",
+          "#8f8a84",
+          "#c4c0bb",
+          "#efedea"
+        ]
+      },
+      "ember-black": {
+        "role": "neutral",
+        "displayName": "Ember Black",
+        "canonical": "#181512",
+        "tonalRamp": [
+          "#0c0a08",
+          "#181512",
+          "#2a2621",
+          "#3e3833",
+          "#5c5650",
+          "#8f8a84",
+          "#c4c0bb",
+          "#efedea"
+        ]
+      },
+      "white": {
+        "role": "neutral",
+        "displayName": "White",
+        "canonical": "#ffffff",
+        "tonalRamp": [
+          "#262626",
+          "#474747",
+          "#6b6b6b",
+          "#8f8f8f",
+          "#b3b3b3",
+          "#d6d6d6",
+          "#ededed",
+          "#ffffff"
+        ]
+      },
+      "ash": {
+        "role": "neutral",
+        "displayName": "Ash",
+        "canonical": "#8f8a84",
+        "tonalRamp": [
+          "#1f1d1b",
+          "#36332f",
+          "#4f4b46",
+          "#6b6660",
+          "#8f8a84",
+          "#aca8a3",
+          "#cac7c3",
+          "#e8e6e3"
+        ]
+      },
+      "brass": {
+        "role": "primary",
+        "displayName": "Brass",
+        "canonical": "#c9a45a",
+        "tonalRamp": [
+          "#2e2412",
+          "#4c3c1d",
+          "#6e572b",
+          "#94753a",
+          "#c9a45a",
+          "#d8b673",
+          "#e6cfa0",
+          "#f4e9d1"
+        ]
+      },
+      "brass-light": {
+        "role": "primary",
+        "displayName": "Brass Light",
+        "canonical": "#d8b673",
+        "tonalRamp": [
+          "#2e2412",
+          "#4c3c1d",
+          "#6e572b",
+          "#94753a",
+          "#c9a45a",
+          "#d8b673",
+          "#e6cfa0",
+          "#f4e9d1"
+        ]
+      },
+      "film-black": {
+        "role": "neutral",
+        "displayName": "Film Black",
+        "canonical": "#000000",
+        "tonalRamp": [
+          "#000000",
+          "#121212",
+          "#262626",
+          "#3d3d3d",
+          "#5c5c5c",
+          "#858585",
+          "#b3b3b3",
+          "#e0e0e0"
+        ]
+      },
+      "scrim": {
+        "role": "neutral",
+        "displayName": "Scrim",
+        "canonical": "rgba(0, 0, 0, 0.72)",
+        "tonalRamp": []
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Section titles on the main page, capitals."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Project and chapter titles, capitals."
+      },
+      "address": {
+        "displayName": "Address",
+        "purpose": "The contact email set as display type."
+      },
+      "lead": {
+        "displayName": "Lead",
+        "purpose": "About paragraph, project descriptions, the line under a title."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Hero line, lists, running text."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Navigation, captions, buttons, meta rows."
+      }
+    },
+    "shadows": [],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.23, 1, 0.32, 1)",
+        "purpose": "Every entrance and press: wordmark rise, reveals, button press, lighting-pass swap."
+      },
+      {
+        "name": "press",
+        "value": "transform 160ms ease-out to scale(0.97)",
+        "purpose": "Feedback on every button and chip."
+      },
+      {
+        "name": "reveal",
+        "value": "rise 28px with opacity on a view() scroll timeline, entry 0–75%, fill forwards",
+        "purpose": "Entrance of section parts; visible by default where scroll timelines are unsupported."
+      },
+      {
+        "name": "tile-video",
+        "value": "opacity 220ms ease",
+        "purpose": "Hover loop fading in over the poster."
+      },
+      {
+        "name": "tile-dim",
+        "value": "opacity 240ms ease to 0.55",
+        "purpose": "Other tiles' media while one plays."
+      },
+      {
+        "name": "pass-swap",
+        "value": "blur(6px) and 0.7 opacity to sharp over 240ms",
+        "purpose": "Bridges two lighting passes so they read as one light changing."
+      },
+      {
+        "name": "intro",
+        "value": "letters-cut layer: hold 1500ms, scale(90) over 1100ms cubic-bezier(0.77, 0, 0.175, 1), fade in last 250ms",
+        "purpose": "First load per session: the reel through the ULTEMA letters, which open to the full screen."
+      },
+      {
+        "name": "film-name",
+        "value": "opacity 180ms ease",
+        "purpose": "The reel's film name changing with the cut."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "phone",
+        "value": "820px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The single primary action, Start a project.",
+      "html": "<a class=\"ds-btn-primary\" href=\"#contact\">Start a project</a>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; min-height: 44px; padding: 0 22px; background: #c9a45a; color: #0c0a08; font: 500 14px/1 Onest, system-ui, sans-serif; text-decoration: none; border-radius: 0; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease; } .ds-btn-primary:hover { background: #d8b673; } .ds-btn-primary:active { transform: scale(0.97); } .ds-btn-primary:focus-visible { outline: 2px solid #c9a45a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Icon Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "Square control over a film, such as the reel's pause.",
+      "html": "<button class=\"ds-icon-btn\" aria-label=\"Pause the showreel\"><svg viewBox=\"0 0 16 16\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path fill=\"currentColor\" d=\"M3 2h3.5v12H3zM9.5 2H13v12H9.5z\"/></svg></button>",
+      "css": ".ds-icon-btn { display: inline-grid; place-items: center; width: 44px; height: 44px; border: 0; border-radius: 0; background: rgba(12, 10, 8, 0.55); color: #fff; cursor: pointer; transition: transform 160ms cubic-bezier(0.23, 1, 0.32, 1), background-color 200ms ease; } .ds-icon-btn:hover { background: rgba(12, 10, 8, 0.8); } .ds-icon-btn:active { transform: scale(0.95); } .ds-icon-btn:focus-visible { outline: 2px solid #c9a45a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Filter Chip",
+      "kind": "chip",
+      "refersTo": "filter-chip",
+      "description": "Frame filter on the wall and the lighting passes on Sky Race.",
+      "html": "<div class=\"ds-chips\"><button class=\"ds-chip\" aria-pressed=\"true\">All</button><button class=\"ds-chip\" aria-pressed=\"false\">Cinema</button><button class=\"ds-chip\" aria-pressed=\"false\">Social</button></div>",
+      "css": ".ds-chips { display: flex; gap: 6px; background: #0c0a08; padding: 12px; } .ds-chip { min-height: 40px; padding: 0 14px; border: 0; border-radius: 0; background: #181512; color: #8f8a84; font: 500 14px/1 Onest, system-ui, sans-serif; cursor: pointer; transition: color 200ms ease, background-color 200ms ease, transform 160ms cubic-bezier(0.23, 1, 0.32, 1); } .ds-chip:hover { color: #fff; } .ds-chip:active { transform: scale(0.97); } .ds-chip[aria-pressed=\"true\"] { background: #fff; color: #0c0a08; } .ds-chip:focus-visible { outline: 2px solid #c9a45a; outline-offset: 3px; }"
+    },
+    {
+      "name": "Bar",
+      "kind": "nav",
+      "refersTo": "nav-link",
+      "description": "The slim top bar: wordmark left, links and languages right.",
+      "html": "<header class=\"ds-bar\"><strong class=\"ds-bar__mark\">ULTEMA</strong><nav class=\"ds-bar__nav\"><a href=\"#work\">Work</a><a href=\"#about\">About</a><a href=\"#contact\">Contact</a><span class=\"ds-bar__lang\"><b>EN</b> RU</span></nav></header>",
+      "css": ".ds-bar { display: flex; align-items: center; justify-content: space-between; height: 72px; padding: 0 32px; background: #0c0a08; color: #fff; font: 500 14px/1 Onest, system-ui, sans-serif; } .ds-bar__mark { font: 800 18px/1 Unbounded, sans-serif; font-style: italic; letter-spacing: -0.03em; } .ds-bar__nav { display: flex; gap: 32px; align-items: center; } .ds-bar__nav a { color: #fff; text-decoration: none; transition: color 200ms ease; } .ds-bar__nav a:hover { color: #c9a45a; } .ds-bar__lang { color: #8f8a84; } .ds-bar__lang b { color: #fff; font-weight: 500; }"
+    },
+    {
+      "name": "Wall Tile",
+      "kind": "card",
+      "refersTo": "filter-chip",
+      "description": "A film in its true frame with its caption; hover plays a loop.",
+      "html": "<a class=\"ds-tile\" href=\"#\"><span class=\"ds-tile__media\"></span><span class=\"ds-tile__cap\"><span>Sky Race</span><span class=\"ds-tile__frame\">2.39:1</span></span></a>",
+      "css": ".ds-tile { display: block; width: 478px; color: #fff; text-decoration: none; font: 500 14px/1.3 Onest, system-ui, sans-serif; background: #0c0a08; } .ds-tile__media { display: block; aspect-ratio: 2.388; background: #181512; transition: opacity 240ms ease; } .ds-tile:hover .ds-tile__media { opacity: 1; } .ds-tile__cap { display: flex; justify-content: space-between; padding-top: 10px; } .ds-tile__frame { color: #8f8a84; } .ds-tile:focus-visible { outline: 2px solid #c9a45a; outline-offset: 4px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Film Owns the Screen",
+    "overview": "ULTEMA is the automotive-CGI studio standard played straight, at the craft level of Fuze, Unit Image, The Mill and Platige. The film is always the largest thing on screen; the interface is a slim bar, a white wordmark and a few words. The page is warm black from top to bottom, and the only colour that is not the footage's own is a brass hover. It is a portfolio, not a sales page: no call-to-action buttons. What makes it ULTEMA and not a template: the site opens on black with the reel seen through the ULTEMA letters, which then open to the full screen (after The Mill, at the owner's request); the reel names the film on screen; the work is a wall where every film keeps the frame it was made in, 2.39:1 cinema beside 9:16 social and 1:1 product films.",
+    "keyCharacteristics": [
+      "Full-bleed muted film in every first screen, with type on its lower edge over a neutral scrim and a second scrim under the bar.",
+      "Warm black ground with one tone step for second grounds; white ink; brass only as a hover.",
+      "Two faces: Unbounded 800 in capitals for titles, Onest for everything read.",
+      "Square corners, no lines, no shadows, no ornament.",
+      "Motion that comes from the films and the scroll, never decoration."
+    ],
+    "rules": [
+      {
+        "name": "The One Brass Rule",
+        "body": "Brass appears only where a pointer is: the hover of a link. Nothing rests in brass.",
+        "section": "colors"
+      },
+      {
+        "name": "The Tone-Step Rule",
+        "body": "Surfaces separate by stepping from Warm Black to Ember Black, never by a line or a shadow.",
+        "section": "colors"
+      },
+      {
+        "name": "The Footage Owns Colour Rule",
+        "body": "The interface keeps to black, white and brass; every other colour on the page comes from the films.",
+        "section": "colors"
+      },
+      {
+        "name": "The Five Steps Rule",
+        "body": "A page uses at most five sizes: label, body, lead, headline, display. The wordmark is drawn, not set, and sits outside the count.",
+        "section": "typography"
+      },
+      {
+        "name": "The Two Lines Rule",
+        "body": "Every heading holds two lines or fewer at every width; cut words before shrinking type.",
+        "section": "typography"
+      },
+      {
+        "name": "The True Frame Rule",
+        "body": "A film is shown in its own aspect. Never crop the wall to a uniform 16:9 grid.",
+        "section": "typography"
+      },
+      {
+        "name": "The No-Shadow Rule",
+        "body": "Nothing casts a shadow. Neutral scrims on a film (under the hero type, under the bar) are the only gradients the system allows.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do open every page with a full-bleed film or a film at full height, muted, with a pause control; on the reel, always name the film on screen.",
+      "Do keep brass (#c9a45a) to hovers; nothing rests in brass.",
+      "Do show each film in its own aspect: 2.39:1, 9:16 or 1:1.",
+      "Do set titles in Unbounded 800 capitals and everything read in Onest.",
+      "Do keep content visible by default; entrances play only where the browser supports scroll timelines, and reduced motion keeps opacity changes only.",
+      "Do carry both languages in the markup and switch with the EN/RU pair, remembered per visitor."
+    ],
+    "donts": [
+      "Don't use gradients, glows or shadows; the neutral scrims on the reel (under the hero type and under the bar) are the only exception.",
+      "Don't draw lines: no hairlines, outlined boxes or dividers. Step the tone instead.",
+      "Don't put small labels above headings, number sections 01/02/03, or set monospace.",
+      "Don't round corners; the About portrait's circle is the single exception.",
+      "Don't add a third typeface or a second accent colour.",
+      "Don't add sales calls to action (\"Start a project\" and the like); contact lives in the Contact section."
+    ]
+  }
+}

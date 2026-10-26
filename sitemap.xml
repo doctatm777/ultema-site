@@ -1,7 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://ultema.pro/</loc><lastmod>2026-10-18</lastmod><priority>1.0</priority></url>
-  <url><loc>https://ultema.pro/projects/sky-race.html</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://ultema.pro/projects/esm-2026.html</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
-  <url><loc>https://ultema.pro/projects/mercedes-autumn.html</loc><lastmod>2026-10-18</lastmod><priority>0.8</priority></url>
+  <url><loc>https://ultema.pro/</loc></url>
+  <url><loc>https://ultema.pro/work/sky-race/</loc></url>
+  <url><loc>https://ultema.pro/work/esm-2026/</loc></url>
+  <url><loc>https://ultema.pro/work/mercedes-w124-autumn/</loc></url>
+  <url><loc>https://ultema.pro/work/weds-bazreia/</loc></url>
+  <url><loc>https://ultema.pro/work/aristo-rakku/</loc></url>
+  <url><loc>https://ultema.pro/work/lexus-wangan-beat/</loc></url>
+  <url><loc>https://ultema.pro/work/aristo-burnout/</loc></url>
+  <url><loc>https://ultema.pro/work/esm-2025/</loc></url>
+  <url><loc>https://ultema.pro/work/skoda-superb-carbon/</loc></url>
+  <url><loc>https://ultema.pro/work/stance-kodiaq/</loc></url>
+  <url><loc>https://ultema.pro/work/airstatic-service/</loc></url>
+  <url><loc>https://ultema.pro/work/metahuman/</loc></url>
+  <url><loc>https://ultema.pro/work/aristo-osushi/</loc></url>
+  <url><loc>https://ultema.pro/work/electrobus/</loc></url>
+  <url><loc>https://ultema.pro/work/mia-pine-creek/</loc></url>
 </urlset>
