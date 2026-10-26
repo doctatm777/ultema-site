@@ -149,8 +149,8 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
     <div class="intro" aria-hidden="true"></div>
     <div class="hero__copy">
       <div class="hero__text">
-        <h1 class="hero__title display">${t({ en: '<span>Artem Ryakin</span><span>CGI car films</span>', ru: '<span>Артём Рякин</span><span>CGI-ролики</span>' })}</h1>
-        <p class="hero__lede">${t({ en: 'CG generalist. Every stage of a film, from storyboard to final comp, by one person.', ru: 'CG-дженералист. Все этапы ролика, от раскадровки до композа, в одних руках.' })}</p>
+        <h1 class="hero__title display">${t({ en: '<span>Artem Ryakin</span><span>CG Generalist</span>', ru: '<span>Артём Рякин</span><span>CG Generalist</span>' })}</h1>
+        <p class="hero__lede">${t({ en: 'Every stage of a 3D film in one pair of hands.', ru: 'Все этапы создания 3D ролика в одних руках.' })}</p>
       </div>
       <div class="hero__actions">
         <a class="hero__now" href="work/${shotsH[0][0]}/" target="_blank" rel="noopener" data-now><span class="hero__now-k">${t({ en: 'In the reel', ru: 'В кадре' })}</span><b data-now-title>${titleOf(shotsH[0][0])}</b>${newTab}</a>

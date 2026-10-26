@@ -125,7 +125,7 @@ A dark, warm, almost colourless system that leaves all colour to the footage.
 
 ### Hierarchy
 - **Display** (800, clamp(3.25rem, 9vw, 8.5rem), 1): section titles on the main page (WORK, the name in About). Capitals, tracking -0.03em. 14vw on phones.
-- **Headline** (800, clamp(2rem, 1.2rem + 3.6vw, 5rem), 1): the hero statement (Artem Ryakin / CGI car films), project titles and chapter titles. Capitals.
+- **Headline** (800, clamp(2rem, 1.2rem + 3.6vw, 5rem), 1): the hero statement (Artem Ryakin / CG Generalist, owner's wording), project titles and chapter titles. Capitals.
 - **Address** (300, display size, 1): the contact email set as display type, lowercase, tracking -0.04em, breaking after the @ on phones.
 - **Lead** (400, clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem), 1.35): the about paragraph, project descriptions, the line under a project title.
 - **Body** (400, clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem), 1.5): the hero line, lists, running text. Measure 30–40ch in short blocks.
