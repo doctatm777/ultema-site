@@ -192,6 +192,9 @@ Each tile is a poster in its true frame. On a fine pointer, hovering pushes the 
 ### The Intro (signature)
 On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
 
+### Cursor
+Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer and a 40px ring (1.5px white outline) that follows it with weight (16% of the distance per frame). Over a link or button the ring opens to 1.6x; over a film tile it scales to 2.1x, fills white and says WATCH / СМОТРЕТЬ in Warm Black, and the dot hides. A press shrinks the ring to 0.85x. Mouse only (hover and fine pointer); touch keeps the system behaviour. Hidden until the first move and when the pointer leaves the window. Reduced motion: the ring sits on the pointer with no lag.
+
 ### Text Rise
 All reading text enters once as it comes on screen (owner, 2026-10-26). site.js splits it; each word is a mask and what sits in it rises from 125% below with cubic-bezier(0.23, 1, 0.32, 1).
 - **Display headings** (h1, h2 in Unbounded capitals) rise letter by letter: 900ms, 28ms apart, capped at 24 letters, so a two-line heading finishes its first line before its second.

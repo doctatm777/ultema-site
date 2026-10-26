@@ -284,4 +284,41 @@
       if (!reduce.matches) big.animate([{ filter: 'blur(6px)', opacity: 0.7 }, { filter: 'blur(0)', opacity: 1 }], { duration: 240, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
     }));
   });
+
+  // ---------- Cursor: a dot on the pointer and a ring that follows with weight (mouse only) ----------
+  // Over a link the ring opens; over a film it fills and says Watch. Hidden until the first move and when the pointer leaves.
+  if (finePointer.matches) {
+    const ring = document.createElement('div');
+    ring.className = 'cursor';
+    ring.setAttribute('aria-hidden', 'true');
+    ring.innerHTML = '<i></i><span><span lang="en">WATCH</span><span lang="ru">СМОТРЕТЬ</span></span>';
+    const dot = document.createElement('div');
+    dot.className = 'cursor-dot';
+    dot.setAttribute('aria-hidden', 'true');
+    document.body.append(ring, dot);
+    root.classList.add('has-cursor');
+
+    const p = { x: 0, y: 0 }, r = { x: 0, y: 0 };
+    let running = false, shown = false;
+    const place = (n, x, y) => { n.style.transform = `translate3d(${x}px, ${y}px, 0)`; };
+    const tick = () => {
+      const k = reduce.matches ? 1 : 0.16;
+      r.x += (p.x - r.x) * k; r.y += (p.y - r.y) * k;
+      place(ring, r.x, r.y);
+      if (Math.abs(p.x - r.x) + Math.abs(p.y - r.y) > 0.1) requestAnimationFrame(tick); else running = false;
+    };
+    addEventListener('pointermove', (e) => {
+      if (e.pointerType !== 'mouse') return;
+      p.x = e.clientX; p.y = e.clientY;
+      if (!shown) { shown = true; r.x = p.x; r.y = p.y; root.classList.add('cursor-on'); }
+      place(dot, p.x, p.y);
+      const hit = e.target.closest?.('.tile, a, button, [role="button"], video[controls]');
+      ring.classList.toggle('is-film', !!hit?.classList.contains('tile'));
+      ring.classList.toggle('is-link', !!hit && !hit.classList.contains('tile'));
+      if (!running) { running = true; requestAnimationFrame(tick); }
+    }, { passive: true });
+    document.addEventListener('pointerleave', () => { shown = false; root.classList.remove('cursor-on'); });
+    addEventListener('pointerdown', () => ring.classList.add('is-down'));
+    addEventListener('pointerup', () => ring.classList.remove('is-down'));
+  }
 })();
