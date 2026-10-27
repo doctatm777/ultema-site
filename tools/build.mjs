@@ -51,7 +51,8 @@ const icons = {
   sound: '<svg viewBox="0 0 16 16" aria-hidden="true" data-icon="sound" style="display:none"><path fill="currentColor" d="M1.5 5.5h3L8.5 2v12l-4-3.5h-3z"/><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10.5 5.5a3.5 3.5 0 0 1 0 5M12.5 3.5a6.5 6.5 0 0 1 0 9"/></svg>',
 };
 
-function head({ rel, title, desc, path, image = 'assets/img/og.jpg' }) {
+// share: the link preview (og) text, when it should differ from the page's own title and description.
+function head({ rel, title, desc, path, image = 'assets/img/og.jpg?v=2', share = { title: title.en, desc } }) {
   return `<!doctype html>
 <html lang="en" data-lang="en">
 <head>
@@ -62,8 +63,8 @@ function head({ rel, title, desc, path, image = 'assets/img/og.jpg' }) {
 <meta name="description" content="${esc(desc)}">
 <link rel="canonical" href="${CONFIG.site}${path}">
 <meta property="og:type" content="website">
-<meta property="og:title" content="${esc(title.en)}">
-<meta property="og:description" content="${esc(desc)}">
+<meta property="og:title" content="${esc(share.title)}">
+<meta property="og:description" content="${esc(share.desc)}">
 <meta property="og:url" content="${CONFIG.site}${path}">
 <meta property="og:image" content="${CONFIG.site}/${image}">
 <meta name="twitter:card" content="summary_large_image">
@@ -123,9 +124,11 @@ function tile(w) {
 }
 
 function index() {
-  const title = { en: 'ULTEMA · Artem Ryakin, CGI car films', ru: 'ULTEMA · Артём Рякин, CGI-ролики об автомобилях' };
+  const title = { en: 'Artem Ryakin — CG Generalist', ru: 'Артём Рякин — CG Generalist' };
+  // The link preview in messengers, in the owner's words (2026-10-27).
+  const share = { title: 'Артём Рякин — CG Generalist', desc: 'Все этапы создания 3D ролика в одних руках' };
   const desc = 'Cinematic CGI car films for brands by Artem Ryakin (ULTEMA): art direction, modeling, animation, simulation, lighting, rendering and compositing, all by one person.';
-  return `${head({ rel: '', title, desc, path: '/' })}
+  return `${head({ rel: '', title, desc, path: '/', share })}
 <body>
 ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${t({ en: 'Work', ru: 'Работы' })}</a>
     <a class="link bar__wide" href="#about">${t({ en: 'About', ru: 'Обо мне' })}</a>
