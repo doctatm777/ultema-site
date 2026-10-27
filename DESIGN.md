@@ -203,6 +203,9 @@ Owner's pick of seven tried (2026-10-27). Mouse only; off under reduced motion. 
 - **Letters lift and grow** near the pointer, falling off with distance, like a dock: the bar menu and EN/RU, and the All / Cinema / Social filter (up to 0.36em lift, 1.28x, reach 3.3em); the Work and About headings and the display email (up to 0.1em, 1.12x, reach 2.2em). The lens uses the translate and scale properties, so it stacks on the Text Rise's transform.
 - **Words light up** near the pointer while the rest step back to 30%: the About text, the portrait caption, and the contact block's line and contact list (one lens across the block).
 
+### Portrait Magnet
+Owner's pick of seven tried (2026-10-27): with a mouse over the round portrait, the photo leans toward the pointer (up to 13px, measured against its frame on entry) and grows to 1.03x, settling over 520ms with cubic-bezier(0.23, 1, 0.32, 1); the caption stays put. It uses the translate and scale properties. Off on touch and under reduced motion.
+
 ### Cursor
 Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer and a 40px ring (1.5px white outline) that follows it with weight (16% of the distance per frame). Over a link or button the ring opens to 1.6x; over a film tile it scales to 2.1x, fills white and says WATCH / СМОТРЕТЬ in Warm Black, and the dot hides. A press shrinks the ring to 0.85x. Mouse only (hover and fine pointer); touch keeps the system behaviour. Hidden until the first move and when the pointer leaves the window. Reduced motion: the ring sits on the pointer with no lag.
 

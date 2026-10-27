@@ -218,6 +218,8 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .about__title [lang] > span { display: block; }
 .portrait { grid-column: 9 / span 4; align-self: center; justify-self: center; width: min(100%, 380px); text-align: center; }
 .portrait img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 50%; } /* owner asked for a round portrait */
+/* Magnet (site.js, mouse only): up to 13px toward the pointer and 1.03x, settling with ease-out. */
+.portrait img { translate: var(--tx, 0) var(--ty, 0); scale: var(--ts, 1); transition: translate 520ms var(--ease-out), scale 520ms var(--ease-out); }
 .portrait figcaption { padding-top: 20px; }
 .portrait figcaption b { display: block; font-size: var(--step-body); font-weight: 500; }
 .portrait figcaption > span { font-size: var(--step-small); color: var(--muted); }

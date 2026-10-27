@@ -331,6 +331,21 @@
     if (contact) light(contact, '.contact__ask .w, .contact__list .w');
   }
 
+  // ---------- Portrait magnet (mouse only): the photo leans toward the pointer and grows a touch; the caption stays (owner's pick) ----------
+  // The frame is measured on entry, so the photo's own movement never feeds back into where it thinks the pointer is.
+  const portrait = $('.portrait img');
+  if (portrait && finePointer.matches && !reduce.matches) {
+    let box = null;
+    portrait.addEventListener('pointerenter', () => { box = portrait.getBoundingClientRect(); });
+    portrait.addEventListener('pointermove', (e) => {
+      if (!box) box = portrait.getBoundingClientRect();
+      const nx = (e.clientX - box.left) / box.width - 0.5, ny = (e.clientY - box.top) / box.height - 0.5;
+      portrait.style.setProperty('--tx', `${(nx * 26).toFixed(1)}px`); portrait.style.setProperty('--ty', `${(ny * 26).toFixed(1)}px`);
+      portrait.style.setProperty('--ts', '1.03');
+    });
+    portrait.addEventListener('pointerleave', () => { box = null; ['--tx', '--ty', '--ts'].forEach((p) => portrait.style.removeProperty(p)); });
+  }
+
   // ---------- Reveal on entry: stagger the parts of a group (the animation itself is CSS) ----------
   const groups = new Map();
   $$('[data-reveal]').forEach((el) => {
