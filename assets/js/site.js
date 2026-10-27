@@ -248,6 +248,28 @@
     return n;
   };
 
+  // Heading draw-on, after the logo: an outline of each letter (an SVG text laid on the letter) is traced, then the letter fills.
+  // The outline sits on the letter's own baseline, measured once from a zero-size probe; the dash is 8em, longer than any glyph.
+  const traceHead = (h) => {
+    const cs = $$('.c', h);
+    const first = cs.find((c) => c.offsetParent) || cs[0];
+    const probe = document.createElement('i'); probe.className = 'c-base'; first.append(probe);
+    const base = probe.offsetTop; probe.remove();
+    const len = `${Math.round(parseFloat(getComputedStyle(first).fontSize) * 8)}px`;
+    cs.forEach((c) => {
+      const ch = c.textContent.toUpperCase();
+      c.insertAdjacentHTML('beforeend', `<svg class="c-draw" aria-hidden="true" focusable="false"><text x="0" y="${base}">${ch}</text></svg>`);
+      c.style.setProperty('--len', len);
+    });
+  };
+  const drawHead = (h) => {
+    if (h.classList.contains('is-drawing')) return;
+    if (!h.dataset.traced) { traceHead(h); h.dataset.traced = '1'; }
+    h.classList.add('is-drawing');
+    const n = $$('.c', h).filter((c) => c.offsetParent).length;
+    setTimeout(() => h.classList.remove('is-drawing'), 1500 + Math.min(n, 24) * 60 + 50);
+  };
+
   // ---------- Text rises out of a mask as it arrives: headings letter by letter, other text word by word ----------
   // Each word is a mask; what sits in it rises from below. Screen readers get the plain text from a visually hidden copy.
   // Interface text (bar, filter, tiles, the reel's film name, buttons) stays still so it is always ready to use.
@@ -257,10 +279,15 @@
   const texts = prose.filter((el) => !prose.some((o) => o !== el && o.contains(el)));
   if ((heads.length || texts.length) && 'IntersectionObserver' in window) {
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); if (e.target.classList.contains('split--draw')) drawHead(e.target); }
     }, { rootMargin: '0px 0px -8% 0px' });
     const prep = (el, letters) => { split(el, 0, letters); el.removeAttribute('data-reveal'); el.classList.add('split', letters ? 'split--letters' : 'split--words'); io.observe(el); };
     heads.forEach((h) => prep(h, true));
+    // The Work and About headings draw on like the logo instead of rising (owner, 2026-10-27), and redraw on hover.
+    if (!reduce.matches) $$('.work__title, .about__title').forEach((h) => {
+      h.classList.add('split--draw');
+      if (finePointer.matches) h.addEventListener('pointerenter', () => { if (h.classList.contains('is-in')) drawHead(h); });
+    });
     texts.forEach((p) => prep(p, p.matches('.contact__mail')));   // the display email rises letter by letter, like a heading
   }
 

@@ -362,6 +362,27 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .split--words .c { transition: transform 700ms var(--ease-out) calc(min(var(--i), 40) * 12ms); }
 .split.is-in .c { transform: none; }
 
+/* Heading draw-on (site.js adds .split--draw, then .is-drawing): the Work and About headings, after the logo.
+   An SVG outline on each letter is traced 60ms apart, then the letter itself fills; nothing rises. */
+.split.split--draw .c { transform: none; position: relative; }
+.split--draw:not(.is-in) .c { -webkit-text-fill-color: transparent; }
+.split--draw.is-drawing .c { animation: head-fill 1500ms var(--ease-in-out) calc(min(var(--i), 24) * 60ms) both; }
+.c-base { display: inline-block; width: 0; height: 0; vertical-align: baseline; }
+.c-draw { position: absolute; left: 0; top: 0; width: 100%; height: 100%; overflow: visible; pointer-events: none; }
+/* The variable font builds letters from overlapping pieces, so a bare stroke shows seams inside them. The outline is
+   stroked at 3px under a fill of the page colour (paint-order), which hides the seams and leaves a 1.5px outer edge. */
+.c-draw text {
+  font: inherit; text-transform: none; fill: var(--bg); stroke: currentColor; stroke-width: 3px; stroke-linejoin: round;
+  paint-order: stroke fill; stroke-dasharray: var(--len); stroke-dashoffset: var(--len); opacity: 0;
+}
+.is-drawing .c-draw text { animation: head-trace 1500ms var(--ease-in-out) calc(min(var(--i), 24) * 60ms) both; }
+@keyframes head-fill { 0%, 65% { -webkit-text-fill-color: transparent; } 100% { -webkit-text-fill-color: currentcolor; } }
+@keyframes head-trace {
+  0% { stroke-dashoffset: var(--len); opacity: 1; }
+  65% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 0; opacity: 0; }
+}
+
 /* Lens (site.js, mouse only). Letters take the lift and growth through translate and scale, which stack on top of
    the rise's transform instead of replacing it. Reading text: the words step back to 30% and light up near the pointer. */
 .lens-ui .c { display: inline-block; transition: translate 200ms var(--ease-out), scale 200ms var(--ease-out); }

@@ -195,6 +195,9 @@ On a visitor's first load per session, the screen is Warm Black with the ULTEMA 
 ### Logo Draw-on
 Owner's pick of seven tried (2026-10-27). The logo is set inline as one path per letter (U, L, T, E, M, A; build.mjs splits the drawn mark). Each letter's outline is traced in its own colour (stroke 12 units, pathLength 1), 60ms apart, then the letter fills: 1500ms, cubic-bezier(0.77, 0, 0.175, 1). The bar logo draws as the page opens (after the intro on a first visit); the footer logo draws once when it is fully on screen; both replay on hover with a mouse (the footer one in brass, its hover colour). Reduced motion: no drawing, the logo is simply there.
 
+### Heading Draw-on
+The Work and About headings draw on like the logo instead of rising (owner, 2026-10-27): site.js lays an SVG outline of each letter on the letter's own baseline, traces it (stroke 3px under a fill of Warm Black, so the variable font's overlapping pieces leave no seams and a 1.5px edge shows), 60ms apart, then the letter fills: 1500ms, cubic-bezier(0.77, 0, 0.175, 1). It plays once when the heading arrives and again on hover with a mouse. Reduced motion: the headings fade in like the rest.
+
 ### Lens (hover)
 Owner's pick of seven tried (2026-10-27). Mouse only; off under reduced motion. Centres are measured when the pointer enters, so nothing chases its own motion.
 - **Letters lift and grow** near the pointer, falling off with distance, like a dock: the bar menu and EN/RU, and the All / Cinema / Social filter (up to 0.36em lift, 1.28x, reach 3.3em); the Work and About headings and the display email (up to 0.1em, 1.12x, reach 2.2em). The lens uses the translate and scale properties, so it stacks on the Text Rise's transform.
