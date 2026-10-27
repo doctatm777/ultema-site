@@ -225,6 +225,29 @@
     }
   }
 
+  // Splits text into words (and letters) behind a visually hidden plain copy for screen readers; used by the rise and the lens.
+  const split = (node, n, letters) => {
+    for (const child of [...node.childNodes]) {
+      if (child.nodeType === 1) { n = split(child, child.hasAttribute('lang') ? 0 : n, letters); continue; }
+      if (child.nodeType !== 3 || !child.textContent.trim()) continue;
+      const frag = document.createDocumentFragment();
+      const plain = document.createElement('span'); plain.className = 'vh'; plain.textContent = child.textContent;
+      const shown = document.createElement('span'); shown.setAttribute('aria-hidden', 'true');
+      child.textContent.split(/(\s+)/).forEach((word) => {
+        if (!word) return;
+        if (/^\s+$/.test(word)) { shown.append(word); return; }
+        const w = document.createElement('span'); w.className = 'w';
+        for (const part of letters ? word : [word]) {
+          const c = document.createElement('span'); c.className = 'c'; c.style.setProperty('--i', String(n++)); c.textContent = part; w.append(c);
+        }
+        shown.append(w);
+      });
+      frag.append(plain, shown);
+      child.replaceWith(frag);
+    }
+    return n;
+  };
+
   // ---------- Text rises out of a mask as it arrives: headings letter by letter, other text word by word ----------
   // Each word is a mask; what sits in it rises from below. Screen readers get the plain text from a visually hidden copy.
   // Interface text (bar, filter, tiles, the reel's film name, buttons) stays still so it is always ready to use.
@@ -233,33 +256,52 @@
     .filter((el) => !el.closest('.tile, .filter, .hero__now, nav, button, .bar'));
   const texts = prose.filter((el) => !prose.some((o) => o !== el && o.contains(el)));
   if ((heads.length || texts.length) && 'IntersectionObserver' in window) {
-    const split = (node, n, letters) => {
-      for (const child of [...node.childNodes]) {
-        if (child.nodeType === 1) { n = split(child, child.hasAttribute('lang') ? 0 : n, letters); continue; }
-        if (child.nodeType !== 3 || !child.textContent.trim()) continue;
-        const frag = document.createDocumentFragment();
-        const plain = document.createElement('span'); plain.className = 'vh'; plain.textContent = child.textContent;
-        const shown = document.createElement('span'); shown.setAttribute('aria-hidden', 'true');
-        child.textContent.split(/(\s+)/).forEach((word) => {
-          if (!word) return;
-          if (/^\s+$/.test(word)) { shown.append(word); return; }
-          const w = document.createElement('span'); w.className = 'w';
-          for (const part of letters ? word : [word]) {
-            const c = document.createElement('span'); c.className = 'c'; c.style.setProperty('--i', String(n++)); c.textContent = part; w.append(c);
-          }
-          shown.append(w);
-        });
-        frag.append(plain, shown);
-        child.replaceWith(frag);
-      }
-      return n;
-    };
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
     }, { rootMargin: '0px 0px -8% 0px' });
     const prep = (el, letters) => { split(el, 0, letters); el.removeAttribute('data-reveal'); el.classList.add('split', letters ? 'split--letters' : 'split--words'); io.observe(el); };
     heads.forEach((h) => prep(h, true));
-    texts.forEach((p) => prep(p, false));
+    texts.forEach((p) => prep(p, p.matches('.contact__mail')));   // the display email rises letter by letter, like a heading
+  }
+
+  // ---------- Lens (mouse only): what is nearest the pointer responds, falling off with distance (owner's pick) ----------
+  // Labels and big headings: letters near the pointer lift and grow, like a dock. Reading text: the words near the pointer
+  // light up while the rest of the paragraph steps back. Centres are measured on entry, so the lens never chases its own motion.
+  if (finePointer.matches && !reduce.matches) {
+    const lensUI = $$('.bar__nav a.link, .lang button, .filter button');
+    lensUI.forEach((el) => { split(el, 0, true); el.classList.add('lens-ui'); });
+    const magnify = (box, { lift, grow, reach }) => {
+      let cs = [], raf = 0, px = 0, py = 0;
+      const measure = () => { cs = $$('.c', box).filter((c) => c.offsetParent).map((c) => { const r = c.getBoundingClientRect(); return [c, r.left + r.width / 2, r.top + r.height / 2, parseFloat(getComputedStyle(c).fontSize)]; }); };
+      const paint = () => {
+        raf = 0;
+        for (const [c, x, y, fs] of cs) {
+          const k = Math.max(0, 1 - Math.hypot(px - x, py - y) / (reach * fs));
+          c.style.setProperty('--ly', `${(-k * lift).toFixed(3)}em`); c.style.setProperty('--ls', (1 + k * grow).toFixed(3));
+        }
+      };
+      box.addEventListener('pointerenter', measure);
+      box.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; if (!cs.length) measure(); if (!raf) raf = requestAnimationFrame(paint); });
+      box.addEventListener('pointerleave', () => { cs.forEach(([c]) => { c.style.removeProperty('--ly'); c.style.removeProperty('--ls'); }); cs = []; });
+    };
+    [$('.bar__nav'), $('.filter')].filter(Boolean).forEach((box) => magnify(box, { lift: 0.36, grow: 0.28, reach: 3.3 }));
+    $$('.work__title, .about__title, .contact__mail').forEach((h) => magnify(h, { lift: 0.1, grow: 0.12, reach: 2.2 }));
+
+    const light = (box, words) => {
+      let ws = [], raf = 0, px = 0, py = 0;
+      $$(words, box).forEach((w) => w.classList.add('lw'));
+      const measure = () => { ws = $$('.lw', box).filter((w) => w.offsetParent).map((w) => { const r = w.getBoundingClientRect(); return [w, r.left + r.width / 2, r.top + r.height / 2]; }); };
+      const paint = () => {
+        raf = 0;
+        for (const [w, x, y] of ws) w.style.setProperty('--lo', Math.max(0.3, 1 - Math.hypot(px - x, (py - y) * 1.6) / 220).toFixed(3));
+      };
+      box.addEventListener('pointerenter', () => { measure(); box.classList.add('is-lit'); });
+      box.addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; if (!ws.length) measure(); if (!raf) raf = requestAnimationFrame(paint); });
+      box.addEventListener('pointerleave', () => { box.classList.remove('is-lit'); ws = []; });
+    };
+    $$('.about__lead, .portrait figcaption').forEach((box) => light(box, '.w'));
+    const contact = $('.contact');
+    if (contact) light(contact, '.contact__ask .w, .contact__list .w');
   }
 
   // ---------- Reveal on entry: stagger the parts of a group (the animation itself is CSS) ----------

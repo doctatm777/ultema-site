@@ -358,9 +358,16 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .split .vh { left: 0; top: 0; }
 .split .w { display: inline-block; clip-path: inset(-0.3em -0.1em -0.2em -0.1em); }
 .split .c { display: inline-block; transform: translateY(125%); }
-.split--letters .c { transition: transform 900ms var(--ease-out) calc(min(var(--i), 24) * 28ms); }
+.split--letters .c { transition: transform 900ms var(--ease-out) calc(min(var(--i), 24) * 28ms), translate 220ms var(--ease-out), scale 220ms var(--ease-out); }
 .split--words .c { transition: transform 700ms var(--ease-out) calc(min(var(--i), 40) * 12ms); }
 .split.is-in .c { transform: none; }
+
+/* Lens (site.js, mouse only). Letters take the lift and growth through translate and scale, which stack on top of
+   the rise's transform instead of replacing it. Reading text: the words step back to 30% and light up near the pointer. */
+.lens-ui .c { display: inline-block; transition: translate 200ms var(--ease-out), scale 200ms var(--ease-out); }
+.lens-ui .c, .work__title .c, .about__title .c, .contact__mail .c { translate: 0 var(--ly, 0); scale: var(--ls, 1); transform-origin: 50% 100%; }
+.lw { transition: opacity 240ms ease; }
+.is-lit .lw { opacity: var(--lo, 0.3); }
 
 /* Load moment: the hero copy settles in once. */
 .js .hero__copy > * { opacity: 0; transform: translateY(12px); transition: opacity 600ms var(--ease-out) 200ms, transform 600ms var(--ease-out) 200ms; }

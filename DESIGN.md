@@ -195,6 +195,11 @@ On a visitor's first load per session, the screen is Warm Black with the ULTEMA 
 ### Logo Draw-on
 Owner's pick of seven tried (2026-10-27). The logo is set inline as one path per letter (U, L, T, E, M, A; build.mjs splits the drawn mark). Each letter's outline is traced in its own colour (stroke 12 units, pathLength 1), 60ms apart, then the letter fills: 1500ms, cubic-bezier(0.77, 0, 0.175, 1). The bar logo draws as the page opens (after the intro on a first visit); the footer logo draws once when it is fully on screen; both replay on hover with a mouse (the footer one in brass, its hover colour). Reduced motion: no drawing, the logo is simply there.
 
+### Lens (hover)
+Owner's pick of seven tried (2026-10-27). Mouse only; off under reduced motion. Centres are measured when the pointer enters, so nothing chases its own motion.
+- **Letters lift and grow** near the pointer, falling off with distance, like a dock: the bar menu and EN/RU, and the All / Cinema / Social filter (up to 0.36em lift, 1.28x, reach 3.3em); the Work and About headings and the display email (up to 0.1em, 1.12x, reach 2.2em). The lens uses the translate and scale properties, so it stacks on the Text Rise's transform.
+- **Words light up** near the pointer while the rest step back to 30%: the About text, the portrait caption, and the contact block's line and contact list (one lens across the block).
+
 ### Cursor
 Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer and a 40px ring (1.5px white outline) that follows it with weight (16% of the distance per frame). Over a link or button the ring opens to 1.6x; over a film tile it scales to 2.1x, fills white and says WATCH / СМОТРЕТЬ in Warm Black, and the dot hides. A press shrinks the ring to 0.85x. Mouse only (hover and fine pointer); touch keeps the system behaviour. Hidden until the first move and when the pointer leaves the window. Reduced motion: the ring sits on the pointer with no lag.
 
@@ -202,7 +207,7 @@ Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer 
 All reading text enters once as it comes on screen (owner, 2026-10-26). site.js splits it; each word is a mask and what sits in it rises from 125% below with cubic-bezier(0.23, 1, 0.32, 1).
 - **Display headings** (h1, h2 in Unbounded capitals) rise letter by letter: 900ms, 28ms apart, capped at 24 letters, so a two-line heading finishes its first line before its second.
 - **Everything else** (paragraphs, sub-headings, lists, captions, the contact email, the footnote) rises word by word: 700ms, 12ms apart, capped at 40 words, so a paragraph is never slow to read.
-- **Stays still:** interface text (bar, filter, tile captions, the reel's film name, buttons, the footer), so it is ready to use at once.
+- **Stays still:** interface text (bar, filter, tile captions, the reel's film name, buttons, the footer), so it is ready to use at once. The display email rises letter by letter, like a heading.
 - The mask reaches 0.3em above and 0.2em below the line so Ё and descenders stay whole; screen readers read a hidden plain copy. Reduced motion: a 300ms fade instead.
 - Taste inspect's ragged-edges WARN on Sky Race comes from the split: the meter counts each word of an h3 as its own text block. The layout's edges are unchanged.
 
