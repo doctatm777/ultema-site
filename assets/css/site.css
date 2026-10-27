@@ -131,6 +131,9 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 .hero__lede { margin-top: 12px; max-width: 34ch; font-size: var(--step-body); font-weight: 400; line-height: 1.45; text-wrap: pretty; }
 .hero__lede b { font-weight: 500; }
 .hero__actions { display: flex; align-items: center; gap: 16px; }
+.hero__ctrl { display: flex; gap: 8px; }
+.hero__now { transition: opacity 240ms ease; }
+.hero__now.is-empty { opacity: 0; }
 /* The film on screen right now, named and linked to its page. */
 .hero__now { display: grid; text-align: right; font-size: var(--step-small); line-height: 1.35; text-decoration: none; }
 .hero__now-k { color: rgba(255, 255, 255, 0.72); }

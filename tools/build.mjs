@@ -47,6 +47,8 @@ const mailto = `mailto:${CONFIG.email}?subject=${encodeURIComponent('Project for
 const icons = {
   pause: '<svg viewBox="0 0 16 16" aria-hidden="true" data-icon="pause"><path fill="currentColor" d="M3 2h3.5v12H3zM9.5 2H13v12H9.5z"/></svg>',
   play: '<svg viewBox="0 0 16 16" aria-hidden="true" data-icon="play" style="display:none"><path fill="currentColor" d="M4 2l10 6-10 6z"/></svg>',
+  muted: '<svg viewBox="0 0 16 16" aria-hidden="true" data-icon="muted"><path fill="currentColor" d="M1.5 5.5h3L8.5 2v12l-4-3.5h-3z"/><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10.5 5.5l4 5M14.5 5.5l-4 5"/></svg>',
+  sound: '<svg viewBox="0 0 16 16" aria-hidden="true" data-icon="sound" style="display:none"><path fill="currentColor" d="M1.5 5.5h3L8.5 2v12l-4-3.5h-3z"/><path fill="none" stroke="currentColor" stroke-width="1.5" d="M10.5 5.5a3.5 3.5 0 0 1 0 5M12.5 3.5a6.5 6.5 0 0 1 0 9"/></svg>',
 };
 
 function head({ rel, title, desc, path, image = 'assets/img/og.jpg' }) {
@@ -113,13 +115,13 @@ function footer(rel, withMark = true) {
 </footer>`;
 }
 
-// Which film is on screen in each showreel, matched frame by frame against the project films (2026-10-26).
-const shotsH = [['sky-race', 0], ['skoda-superb-carbon', 2.25], ['lexus-wangan-beat', 4.5], ['weds-bazreia', 6.75], ['sky-race', 8.75],
-  ['mercedes-w124-autumn', 10.75], ['metahuman', 12.75], ['lexus-wangan-beat', 14.75], ['sky-race', 16.75], ['mercedes-w124-autumn', 18.75],
-  ['skoda-superb-carbon', 20.75], ['lexus-wangan-beat', 22.75], ['sky-race', 24.75]];
-const shotsV = [['aristo-burnout', 0], ['esm-2025', 2.25], ['aristo-osushi', 4.5], ['esm-2026', 6.75], ['weds-bazreia', 8.75],
-  ['airstatic-service', 10.75], ['esm-2025', 12.75], ['stance-kodiaq', 15], ['aristo-rakku', 17], ['electrobus', 18.75], ['esm-2025', 21.25]];
-const titleOf = (slug) => works.find((w) => w.slug === slug).title;
+// Which film is on screen in the showreel (Artem's cut, 2026-10-27), matched frame by frame against the project films.
+// The phone file is a centre crop of the same cut, so one map serves both. '' is the opening logo: no name shown.
+const shots = [['', 0], ['skoda-superb-carbon', 3.2], ['lexus-wangan-beat', 4], ['weds-bazreia', 7], ['sky-race', 9.25],
+  ['esm-2025', 11.25], ['mercedes-w124-autumn', 13.75], ['metahuman', 15.75], ['lexus-wangan-beat', 17.75], ['mercedes-w124-autumn', 18.75],
+  ['sky-race', 19.75], ['mercedes-w124-autumn', 21.75], ['skoda-superb-carbon', 23], ['lexus-wangan-beat', 26.25]];
+const firstShot = shots.find(([s]) => s)[0];
+const titleOf = (slug) => (slug ? works.find((w) => w.slug === slug).title : '');
 
 // ---------- index.html ----------
 function tile(w) {
@@ -144,9 +146,9 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
 <main>
   <section class="hero" id="top" ${tAttr('aria-label', { en: 'Showreel', ru: 'Шоурил' })}>
     <video id="reel" class="hero__video" muted loop playsinline autoplay preload="auto" poster="assets/media/reel-16x9.jpg"
-      data-src-h="assets/media/reel-16x9.mp4" data-src-v="assets/media/reel-9x16.mp4" data-intro-v="13"
+      data-src-h="assets/media/reel-16x9.mp4" data-src-v="assets/media/reel-9x16.mp4" data-intro="7"
       data-poster-h="assets/media/reel-16x9.jpg" data-poster-v="assets/media/reel-9x16.jpg"
-      data-shots-h='${JSON.stringify(shotsH.map(([s, at]) => [s, at, titleOf(s)]))}' data-shots-v='${JSON.stringify(shotsV.map(([s, at]) => [s, at, titleOf(s)]))}'
+      data-shots='${JSON.stringify(shots.map(([s, at]) => [s, at, titleOf(s)]))}'
       ${tAttr('aria-label', { en: 'Showreel cut from Artem Ryakin’s car films', ru: 'Шоурил из автомобильных роликов Артёма Рякина' })}>
       <source src="assets/media/reel-16x9.mp4" type="video/mp4">
     </video>
@@ -157,8 +159,11 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
         <p class="hero__lede">${t({ en: 'Every stage of a 3D film in one pair of hands', ru: 'Все этапы создания 3D ролика в одних руках' })}</p>
       </div>
       <div class="hero__actions">
-        <a class="hero__now" href="work/${shotsH[0][0]}/" target="_blank" rel="noopener" data-now><span class="hero__now-k">${t({ en: 'In the reel', ru: 'В кадре' })}</span><b data-now-title>${titleOf(shotsH[0][0])}</b>${newTab}</a>
-        <button type="button" class="icon-btn" data-reel-toggle aria-pressed="false" ${tAttr('aria-label', { en: 'Pause or play the showreel', ru: 'Пауза или запуск шоурила' })}>${icons.pause}${icons.play}</button>
+        <a class="hero__now is-empty" href="work/${firstShot}/" target="_blank" rel="noopener" data-now inert><span class="hero__now-k">${t({ en: 'In the reel', ru: 'В кадре' })}</span><b data-now-title>${titleOf(firstShot)}</b>${newTab}</a>
+        <div class="hero__ctrl">
+          <button type="button" class="icon-btn" data-reel-sound aria-pressed="false" ${tAttr('aria-label', { en: 'Sound', ru: 'Звук' })}>${icons.muted}${icons.sound}</button>
+          <button type="button" class="icon-btn" data-reel-toggle aria-pressed="false" ${tAttr('aria-label', { en: 'Pause or play the showreel', ru: 'Пауза или запуск шоурила' })}>${icons.pause}${icons.play}</button>
+        </div>
       </div>
     </div>
   </section>

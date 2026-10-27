@@ -30,7 +30,7 @@ Visitors mostly come from phones (Instagram bio link) and desktops (Behance, age
 ## Capabilities and Constraints
 
 - Owner brief (2026-10-25, replaces the earlier VHS-cassette structure): a one-page site for the personal premium brand ULTEMA, redesign of ultema.pro, **in dark tones**, three blocks:
-  1. top: the showreel cut from different projects;
+  1. top: Artem's showreel (`F:/UNREAL_ENGINE/PORTFOLIO/showreel.mp4`, 28s with sound, from 2026-10-27), muted until the visitor turns sound on;
   2. middle: the works — each shows a preview still, hovering starts its video, clicking opens a separate project page with that film's materials, modelled on the Sky Race breakdown;
   3. bottom: about — Artem's photo, a description and contact.
 - Typography: the owner asks for interesting, premium typefaces.

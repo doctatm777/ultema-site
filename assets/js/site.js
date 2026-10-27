@@ -54,7 +54,20 @@
     if (reduce.matches) reel.dataset.paused = '1';
     pick();
     setPaused(reduce.matches);
+    // Held still for reduced motion: rest on the first bright shot, not on the opening logo, so a film is named.
+    if (reduce.matches && reel.dataset.intro) {
+      const rest = () => { reel.currentTime = parseFloat(reel.dataset.intro); };
+      if (reel.readyState >= 1) rest(); else reel.addEventListener('loadedmetadata', rest, { once: true });
+    }
     pauseBtn?.addEventListener('click', () => setPaused(!reel.dataset.paused));
+    // Sound: the reel autoplays muted (browsers allow nothing else); one press turns the track on.
+    const soundBtn = $('[data-reel-sound]');
+    soundBtn?.addEventListener('click', () => {
+      reel.muted = !reel.muted;
+      soundBtn.setAttribute('aria-pressed', String(!reel.muted));
+      soundBtn.querySelectorAll('[data-icon]').forEach((i) => { i.style.display = i.dataset.icon === (reel.muted ? 'muted' : 'sound') ? '' : 'none'; });
+      if (!reel.muted && reel.dataset.paused) setPaused(false);
+    });
     // Stop decoding when the reel is off screen.
     new IntersectionObserver(([e]) => {
       if (reel.dataset.paused) return;
@@ -67,13 +80,15 @@
   if (reel && now) {
     const title = $('[data-now-title]', now);
     let shown = '';
-    const shots = () => JSON.parse(reel.currentSrc.endsWith(reel.dataset.srcV) ? reel.dataset.shotsV : reel.dataset.shotsH);
+    const shots = () => JSON.parse(reel.dataset.shots);
     reel.addEventListener('timeupdate', () => {
       const list = shots();
       let cur = list[0];
       for (const sh of list) if (reel.currentTime >= sh[1]) cur = sh;
       if (cur[0] === shown) return;
       shown = cur[0];
+      now.classList.toggle('is-empty', !cur[0]); now.inert = !cur[0];   // the opening logo names no film
+      if (!cur[0]) return;
       now.href = `work/${cur[0]}/`;
       if (reduce.matches) { title.textContent = cur[2]; return; }
       title.classList.add('is-changing');                 // a short fade so the name changes with the cut, not as a jump
@@ -87,9 +102,9 @@
   requestAnimationFrame(() => requestAnimationFrame(loaded));
   setTimeout(loaded, 120); // a background tab may hold animation frames back
   if (root.classList.contains('intro-on')) {
-    // The phone reel opens on a grey burnout; start the intro on the bright orange ESM 2025 shot (13s, chosen by measuring the letter band) so the letters read as film.
-    if (reel && reel.dataset.introV && reel.src.endsWith(reel.dataset.srcV)) {   // src is set synchronously by pick(); currentSrc lags
-      const seek = () => { reel.currentTime = parseFloat(reel.dataset.introV); };
+    // The reel opens on its own logo over black; start the intro on the bright Weds wheel shot (7s) so the letters read as film, not as black.
+    if (reel && reel.dataset.intro) {
+      const seek = () => { reel.currentTime = parseFloat(reel.dataset.intro); };
       if (reel.readyState >= 1) seek(); else reel.addEventListener('loadedmetadata', seek, { once: true });
     }
     try { sessionStorage.setItem('ultema-intro', '1'); } catch { /* private mode */ }

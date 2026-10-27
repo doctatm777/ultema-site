@@ -162,8 +162,8 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 - **Shape:** square (0px), 44px tall.
 - **Primary:** Brass fill, Warm Black label in Onest 500, 22px side padding. Used only on the 404 page; the portfolio pages carry no call-to-action button (owner, 2026-10-26).
 - **Hover / Focus:** fill lightens to Brass Light (#d8b673) on fine pointers; focus shows a 2px brass outline 3px off the edge; press scales to 0.97 over 160ms with a strong ease-out.
-- **Icon button:** 44px square on a 55% Warm Black field (the reel's pause), press scale 0.95.
-- **Film name:** bottom-right of the reel, a muted "In the reel" over the current film's name; it changes with each cut (180ms fade), links to that film's page and turns brass on hover.
+- **Icon button:** 44px square on a 55% Warm Black field (the reel's sound and pause, side by side), press scale 0.95. The reel starts muted; Sound turns Artem's track on.
+- **Film name:** bottom-right of the reel, a muted "In the reel" over the current film's name; it changes with each cut (180ms fade), links to that film's page and turns brass on hover. During the reel's opening logo it is hidden.
 
 ### Chips
 - **Style:** the frame filter (All, Cinema, Social) and the Sky Race lighting passes: Ember Black fill, Ash label, 40px tall.
@@ -190,7 +190,7 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 Each tile is a poster in its true frame. On a fine pointer, hovering pushes the poster in (scale 1.06 over 1200ms), wipes the 5-second muted loop across it from the left (clip-path, 640ms) while it settles from scale 1.08, raises a quiet "Watch the film" line under the name, and dims the other tiles' media to 55%; leaving undoes it in 260–420ms, and a press sinks the tile to 0.985. All easing is cubic-bezier(0.23, 1, 0.32, 1); reduced motion drops the travel. On a phone the tile that is fully on screen plays on its own. Captions sit on the preview itself (owner, 2026-10-26): the film's name only, bottom-left over a neutral scrim, inside the tile's own width; the frame shows in the tile's shape, not in words. Every tile opens the film's own page in a new tab.
 
 ### The Intro (signature)
-On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
+On a visitor's first load per session, the screen is Warm Black with the ULTEMA letters cut out of it at 62vw (84vw on phones), and the reel plays through them, started at 7s on the gold Weds wheel (the reel's own opening is its logo on black), while the statement and nav stay readable. After 1.5s, or at the first scroll, key or touch, the layer scales 90x about a point inside the L's stem over 1100ms (cubic-bezier(0.77, 0, 0.175, 1)) and fades in its last 250ms; the bar's logo then fades in at the top left. Skipped under reduced motion, on a deep link and on later loads in the session.
 
 ### Cursor
 Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer and a 40px ring (1.5px white outline) that follows it with weight (16% of the distance per frame). Over a link or button the ring opens to 1.6x; over a film tile it scales to 2.1x, fills white and says WATCH / СМОТРЕТЬ in Warm Black, and the dot hides. A press shrinks the ring to 0.85x. Mouse only (hover and fine pointer); touch keeps the system behaviour. Hidden until the first move and when the pointer leaves the window. Reduced motion: the ring sits on the pointer with no lag.
