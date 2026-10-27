@@ -77,8 +77,10 @@ function head({ rel, title, desc, path, image = 'assets/img/og.jpg' }) {
 </head>`;
 }
 
-const symbol = `<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><symbol id="logo" viewBox="0 0 1796 180"><path fill="currentColor" d="${logoPath}"/></symbol></svg>`;
-const logo = (attrs = 'aria-hidden="true" focusable="false"') => `<svg viewBox="0 0 1796 180" ${attrs}><use href="#logo"/></svg>`;
+// The logo is set inline as one path per letter (U, L, T, E in two pieces, M, A) so it can draw itself on (site.js).
+const logoParts = logoPath.split(/(?=M)/).filter((p) => p.trim());
+const logoLetters = [[0], [1], [2], [3, 4], [5], [6]].map((g) => g.map((k) => logoParts[k]).join(''));
+const logo = (attrs = 'aria-hidden="true" focusable="false"') => `<svg class="logo" viewBox="0 0 1796 180" ${attrs}>${logoLetters.map((d, i) => `<path fill="currentColor" pathLength="1" style="--i:${i}" d="${d}"/>`).join('')}</svg>`;
 const lang = `<div class="lang" role="group" ${tAttr('aria-label', { en: 'Language', ru: 'Язык' })}><button type="button" data-set-lang="en" aria-pressed="true">EN</button><button type="button" data-set-lang="ru" aria-pressed="false">RU</button></div>`;
 
 function bar({ rel, home, solid = false, links }) {
@@ -125,7 +127,6 @@ function index() {
   const desc = 'Cinematic CGI car films for brands by Artem Ryakin (ULTEMA): art direction, modeling, animation, simulation, lighting, rendering and compositing, all by one person.';
   return `${head({ rel: '', title, desc, path: '/' })}
 <body>
-${symbol}
 ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${t({ en: 'Work', ru: 'Работы' })}</a>
     <a class="link bar__wide" href="#about">${t({ en: 'About', ru: 'Обо мне' })}</a>
     <a class="link" href="#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a>` })}
@@ -306,7 +307,6 @@ function project(w, i) {
   ].filter(Boolean);
   return `${head({ rel: R, title, desc: w.desc.en, path: `/work/${w.slug}/`, image: `assets/media/work/${w.films[0].src}.webp` })}
 <body>
-${symbol}
 ${bar({ rel: R, home: R, solid: true, links: `<a class="link" href="${R}#work">${t({ en: 'All work', ru: 'Все работы' })}</a>
     <a class="link bar__wide" href="${R}#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a>` })}
 <main id="top">
@@ -336,7 +336,6 @@ function notFound() {
   const title = { en: 'Page not found · ULTEMA', ru: 'Страница не найдена · ULTEMA' };
   return `${head({ rel: '/', title, desc: 'This page does not exist on ultema.pro.', path: '/404.html' }).replace('<meta name="theme-color"', '<meta name="robots" content="noindex">\n<meta name="theme-color"')}
 <body>
-${symbol}
 ${bar({ rel: '/', home: '/', solid: true, links: `<a class="link" href="/#work">${t({ en: 'Work', ru: 'Работы' })}</a>
     <a class="link bar__wide" href="/#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a>` })}
 <main id="top">

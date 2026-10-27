@@ -109,7 +109,7 @@
     }
     try { sessionStorage.setItem('ultema-intro', '1'); } catch { /* private mode */ }
     let done = false;
-    const finish = () => { if (done) return; done = true; root.classList.add('intro-done'); };
+    const finish = () => { if (done) return; done = true; root.classList.add('intro-done'); document.dispatchEvent(new Event('ultema:intro-done')); };
     const zoom = () => { if (root.classList.contains('is-zooming')) return; root.classList.add('is-zooming'); setTimeout(finish, 1150); };
     const hold = setTimeout(zoom, 1500);
     // Any intent to move on skips the hold and opens the letters at once.
@@ -299,6 +299,25 @@
       if (!reduce.matches) big.animate([{ filter: 'blur(6px)', opacity: 0.7 }, { filter: 'blur(0)', opacity: 1 }], { duration: 240, easing: 'cubic-bezier(0.23, 1, 0.32, 1)' });
     }));
   });
+
+  // ---------- Logos draw themselves on: the outline is traced letter by letter, then the letters fill (owner's pick) ----------
+  // The bar logo draws as the page opens (after the intro on a first visit), the footer logo as it comes on screen; both replay on hover.
+  if (!reduce.matches) {
+    const drawLogo = (svg) => {
+      if (!svg || svg.classList.contains('is-drawing')) return;
+      svg.classList.add('is-drawing');
+      setTimeout(() => svg.classList.remove('is-drawing'), 1500 + 5 * 60 + 50);
+    };
+    const barLogo = $('.bar__home .logo');
+    if (root.classList.contains('intro-on') && !root.classList.contains('intro-done')) document.addEventListener('ultema:intro-done', () => drawLogo(barLogo), { once: true });
+    else drawLogo(barLogo);
+    const footLogo = $('.foot__mark .logo');
+    if (footLogo) {
+      const io = new IntersectionObserver(([e]) => { if (e.isIntersecting) { drawLogo(footLogo); io.disconnect(); } }, { threshold: 1 });
+      io.observe(footLogo);
+    }
+    if (finePointer.matches) $$('.bar__home, .foot__mark').forEach((a) => a.addEventListener('pointerenter', () => drawLogo($('.logo', a))));
+  }
 
   // ---------- Cursor: a dot on the pointer and a ring that follows with weight (mouse only) ----------
   // Over a link the ring opens; over a film it fills and says Watch. Hidden until the first move and when the pointer leaves.

@@ -376,6 +376,18 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   .js .hero__copy > * { transform: none; transition: opacity 300ms ease; }
 }
 
+/* ---------- Logo draw-on (site.js adds .is-drawing) ----------
+   Each letter's outline is traced (pathLength 1, so one dash is the whole letter), 60ms apart, then the letter fills. */
+.logo.is-drawing path {
+  stroke: currentColor; stroke-width: 12; stroke-dasharray: 1;
+  animation: logo-draw 1500ms var(--ease-in-out) calc(var(--i) * 60ms) both;
+}
+@keyframes logo-draw {
+  0% { stroke-dashoffset: 1; fill-opacity: 0; }
+  65% { stroke-dashoffset: 0; fill-opacity: 0; }
+  100% { stroke-dashoffset: 0; fill-opacity: 1; stroke-width: 0; }
+}
+
 /* ---------- Cursor (mouse only; site.js adds .has-cursor) ----------
    A dot exactly on the pointer and a ring that follows with weight. Over a link the ring opens,
    over a film it fills white and says Watch. Transform and opacity only. */
