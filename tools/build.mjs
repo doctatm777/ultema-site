@@ -91,27 +91,13 @@ function bar({ rel, home, solid = false, links }) {
 </header>`;
 }
 
-const socials = () => contacts.map(([name, , href]) => `<a class="link" href="${href}" rel="me noopener">${name}</a>`);
 
-function footer(rel, withMark = true) {
+function footer(rel) {
   const home = rel ? `${rel}` : '';
   return `<footer class="foot">
-  <div class="foot__grid">
-    <div class="foot__brand">
-      <a class="foot__mark" href="${home || '#top'}" ${tAttr('aria-label', { en: 'ULTEMA, home', ru: 'ULTEMA, на главную' })}>${logo()}</a>
-      <p class="foot__line">${t({ en: 'Cinematic CGI car films by Artem Ryakin, CG generalist', ru: 'Кинематографичные CGI-ролики об автомобилях. Артём Рякин, CG-дженералист' })}</p>
-    </div>
-    <ul class="foot__nav" ${tAttr('aria-label', { en: 'Site', ru: 'Разделы' })}>
-      <li><a class="link" href="${home}#work">${t({ en: 'Work', ru: 'Работы' })}</a></li>
-      <li><a class="link" href="${home}#about">${t({ en: 'About', ru: 'Обо мне' })}</a></li>
-      <li><a class="link" href="${home}#contact">${t({ en: 'Contact', ru: 'Контакты' })}</a></li>
-    </ul>
-    <ul class="foot__social">
-      <li><a class="link" href="${mailto}">${CONFIG.email}</a></li>
-      ${socials().map((a) => `<li>${a}</li>`).join('\n      ')}
-    </ul>
-  </div>
-  <div class="foot__legal"><p>© <span data-year>2026</span> ULTEMA · ${t({ en: 'Artem Ryakin', ru: 'Артём Рякин' })}</p><a class="link" href="#top">${t({ en: 'Back to top', ru: 'Наверх' })}</a></div>
+  <p>© <span data-year>2026</span> ULTEMA · ${t({ en: 'Artem Ryakin', ru: 'Артём Рякин' })}</p>
+  <a class="foot__mark" href="${home || '#top'}" ${tAttr('aria-label', { en: 'ULTEMA, home', ru: 'ULTEMA, на главную' })}>${logo()}</a>
+  <a class="link foot__top" href="#top">${t({ en: 'Back to top', ru: 'Наверх' })}</a>
 </footer>`;
 }
 
@@ -201,10 +187,9 @@ ${bar({ rel: '', home: '#top', links: `<a class="link bar__wide" href="#work">${
     <h2 class="contact__ask" id="contact-title" data-reveal>${t({ en: 'For films and collaborations, write to me', ru: 'По роликам и сотрудничеству пишите мне' })}</h2>
     <a class="contact__mail" href="${mailto}" data-reveal>${CONFIG.email.replace('@', '@<wbr>')}</a>
     <ul class="contact__list" ${tAttr('aria-label', { en: 'Contacts', ru: 'Контакты' })}>
-      ${contacts.map(([name, handle, href]) => `<li><span>${name}</span><a class="link" href="${href}" rel="me noopener">${handle}</a></li>`).join('\n      ')}
-      <li><span>Email</span><a class="link" href="${mailto}">${CONFIG.email}</a></li>
+      ${contacts.map(([name, handle, href]) => `<li><span>${name}${name === 'Instagram' ? '*' : ''}</span><a class="link" href="${href}" rel="me noopener">${handle}</a></li>`).join('\n      ')}
     </ul>
-    <p class="contact__note">${t({ en: 'English or Russian, either is fine', ru: 'Можно на русском или на английском' })}</p>
+    <p class="contact__note">${t({ en: '* A Meta social network, banned in Russia', ru: '* Запрещённая в РФ соцсеть компании Meta' })}</p>
   </section>
 </main>
 ${footer('')}
@@ -340,7 +325,7 @@ ${bar({ rel: R, home: R, solid: true, links: `<a class="link" href="${R}#work">$
     </div>
   </section>
 </main>
-${footer(R, false)}
+${footer(R)}
 </body>
 </html>
 `;
@@ -370,7 +355,7 @@ ${bar({ rel: '/', home: '/', solid: true, links: `<a class="link" href="/#work">
     </div>
   </section>
 </main>
-${footer('/', false)}
+${footer('/')}
 </body>
 </html>
 `;

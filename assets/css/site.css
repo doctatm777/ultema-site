@@ -238,23 +238,20 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
 }
 @media (hover: hover) and (pointer: fine) { .contact__mail:hover { color: var(--accent); } }
 /* Four contacts on the 12-column grid: a muted service name over the handle. */
-.contact__list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px 24px; }
+.contact__list { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px 24px; }
 .contact__list li { display: grid; gap: 8px; min-width: 0; }
 .contact__list li > span { font-size: var(--step-small); color: var(--muted); }
 .contact__list a { overflow-wrap: anywhere; }
 .contact__note { margin-top: clamp(32px, 4vw, 48px); font-size: var(--step-small); color: var(--muted); }
 
 /* ---------- Footer: a quiet close with a small logo ---------- */
-.foot { padding: clamp(56px, 6vw, 88px) var(--m) 28px; }
-.foot__grid { display: grid; grid-template-columns: repeat(12, 1fr); column-gap: 24px; row-gap: 40px; align-items: start; }
-.foot__brand { grid-column: 1 / span 5; }
+.foot {
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 24px;
+  padding: clamp(56px, 6vw, 88px) var(--m) 32px; font-size: var(--step-small); color: var(--muted);
+}
 .foot__mark { display: block; width: clamp(120px, 11vw, 168px); color: var(--ink); transition: color 200ms ease; }
 .foot__mark svg { width: 100%; height: auto; }
-.foot__line { margin-top: 18px; max-width: 32ch; color: var(--muted); }
-.foot__nav, .foot__social { list-style: none; padding: 0; display: grid; gap: 10px; }
-.foot__nav { grid-column: 7 / span 2; }
-.foot__social { grid-column: 10 / span 3; }
-.foot__legal { display: flex; justify-content: space-between; gap: 24px; margin-top: clamp(56px, 6vw, 88px); font-size: var(--step-small); color: var(--muted); }
+.foot__top { justify-self: end; }
 @media (hover: hover) and (pointer: fine) { .foot__mark:hover { color: var(--accent); } }
 
 /* ---------- Project pages ---------- */
@@ -416,11 +413,9 @@ html[data-lang="en"] [lang="ru"], html[data-lang="ru"] [lang="en"] { display: no
   .hero__now { text-align: left; }
   .intro-on .intro { --iw: 92vw; }
   .contact__mail { white-space: normal; }
-  .contact__list { grid-template-columns: repeat(2, 1fr); }
-  .foot__brand { grid-column: 1 / -1; }
-  .foot__nav { grid-column: 1 / span 6; }
-  .foot__social { grid-column: 7 / span 6; }
-  .foot__legal { margin-top: 48px; }
+  .contact__list { grid-template-columns: 1fr; gap: 24px; }
+  .foot { grid-template-columns: 1fr auto; row-gap: 40px; }
+  .foot__mark { grid-column: 1 / -1; grid-row: 1; justify-self: center; }
   .case-text p, .case-text__role { grid-column: 1 / -1; }
   .case-text .case-text__role { grid-column: 1 / -1; margin-top: 48px; padding-top: 0; }
   .film--v { grid-template-columns: 1fr; row-gap: 48px; }

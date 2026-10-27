@@ -178,8 +178,8 @@ Square corners everywhere (0px): buttons, chips, tiles, films. The one circle is
 
 ### Footer
 - **Hero statement:** after The Mill (owner, 2026-10-26): 'Artem Ryakin / CG Generalist' small in the bottom-left corner, Unbounded 500 capitals at the lead step, the second line at 72% white, with one body line under it.
-- **Contact:** on the page's own Warm Black, the email in Unbounded 300 at the headline step, then the four contacts on the grid (Behance, Instagram, Telegram, Email), each a muted service name over its handle; two columns on phones.
-- **Style:** a quiet close on Warm Black: the logo at 120–168px with one line about Artem in Ash, the section links, the email and socials, and a legal row with Back to top. No full-width wordmark (owner, 2026-10-26).
+- **Contact:** on the page's own Warm Black, the email in Unbounded 300 at the headline step, then three contacts on the grid (Behance, Instagram*, Telegram), each a muted service name over its handle, one column on phones. The email appears once, as the display line. Under them the footnote '* Запрещённая в РФ соцсеть компании Meta' / '* A Meta social network, banned in Russia' (owner, 2026-10-27).
+- **Style:** one quiet row on Warm Black: © ULTEMA · Artem Ryakin on the left in Ash, the logo at 120–168px in the centre, Back to top on the right. No links, email or socials repeated, no line of copy (owner, 2026-10-27). On phones the logo sits centred above the row.
 
 ### Navigation
 - **Style:** the white wordmark at the left (136px max), Work, About, Contact and the EN/RU pair at the right, all in Label size and weight. Inactive language in Ash.
@@ -198,8 +198,8 @@ Owner's pick of five tried (2026-10-26): a 6px white dot exactly on the pointer 
 ### Text Rise
 All reading text enters once as it comes on screen (owner, 2026-10-26). site.js splits it; each word is a mask and what sits in it rises from 125% below with cubic-bezier(0.23, 1, 0.32, 1).
 - **Display headings** (h1, h2 in Unbounded capitals) rise letter by letter: 900ms, 28ms apart, capped at 24 letters, so a two-line heading finishes its first line before its second.
-- **Everything else** (paragraphs, sub-headings, lists, captions, the contact email, the footer line) rises word by word: 700ms, 12ms apart, capped at 40 words, so a paragraph is never slow to read.
-- **Stays still:** interface text (bar, filter, tile captions, the reel's film name, buttons, footer links), so it is ready to use at once.
+- **Everything else** (paragraphs, sub-headings, lists, captions, the contact email, the footnote) rises word by word: 700ms, 12ms apart, capped at 40 words, so a paragraph is never slow to read.
+- **Stays still:** interface text (bar, filter, tile captions, the reel's film name, buttons, the footer), so it is ready to use at once.
 - The mask reaches 0.3em above and 0.2em below the line so Ё and descenders stay whole; screen readers read a hidden plain copy. Reduced motion: a 300ms fade instead.
 - Taste inspect's ragged-edges WARN on Sky Race comes from the split: the meter counts each word of an h3 as its own text block. The layout's edges are unchanged.
 
